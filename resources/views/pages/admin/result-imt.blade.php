@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Kelas
+    Result IMT
 @endsection
 @push('addon-script')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
@@ -20,42 +20,57 @@
     <div id="content" class="flex ">
         @include('alert.success')
         @include('alert.failed')
+
         {{-- MODEL --}}
         <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Edit Kelas</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit Result</h4>
                         <button type="button" class="btn btn-close" data-dismiss="modal">
                             {{-- <span aria-hidden="true">&times;</span> --}}
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('update-kelas') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update-result-imt') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="id" name="id">
-                            <input type="hidden" id="sekolah_id" name="sekolah_id">
+                            <input type="hidden" id="resultT" name="resultT">
+                            <input type="hidden" id="genderT" name="genderT">
 
-                            <div class="mb-3">
-                                <label for="exampleInputtext1" class="form-label">Kelas</label>
-                                <input id="kelas" type="text" class="form-control" name="kelas" required>
 
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nama Sekolah</label>
-                                <select class="form-control" name="sekolah_id" id="sekolah_id" required>
-                                    <option id="sekolah_id_existing" value="">Pilih Sekolah</option>
-
-                                    @foreach ($sekolah as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_sekolah }}</option>
-                                    @endforeach
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">Nama Hasil</label>
+                                <select class="form-control" name="result" id="result" disabled required>
+                                    <option id="resultT" value="">Pilih Result</option>
+                                    <option value="OBESITAS">OBESITAS</option>
+                                    <option value="BERAT BERLEBIHAN">BERAT BERLEBIHAN</option>
+                                    <option value="NORMAL">NORMAL</option>
+                                    <option value="KURUS">KURUS</option>
+                                    <option value="SANGAT KURUS">SANGAT KURUS</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">Jenis Klamin</label>
+                                <select class="form-control" name="gender" id="gender" disabled required>
+                                    <option value="">Pilih Jenis Klamin</option>
+                                    <option value="PRIA">PRIA</option>
+                                    <option value="WANITA">WANITA</option>
 
 
-                                {{-- <input id="nama_sekolah" type="text" class="form-control"  name="nama_sekolah"> --}}
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">Berat Rendah</label>
+                                <input type="number" step="0.01" id="start_value" name="start_value"
+                                    class="form-control" placeholder="" required>
+                            </div>
 
-
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">Berat Tinggi</label>
+                                <input type="number" step="0.01" id="end_value" name="end_value" class="form-control"
+                                    placeholder="" required>
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -80,7 +95,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('delete-kelas') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('delete-result-imt') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="idData" name="idData">
                             <p>Anda yakin menghapus data ini?</p>
@@ -94,18 +109,19 @@
                 </div>
             </div>
         </div>
+
         <!-- ############ Main START-->
         <div>
             <div class="page-hero page-container " id="page-hero">
                 <div class="padding d-flex pt-0">
                     <div class="page-title">
-                        <h2 class="text-md text-highlight">Kelas</h2>
-                        <small class="text-muted">Daftar list kelas terdaftar</small>
+                        <h2 class="text-md text-highlight">Result IMT</h2>
+                        <small class="text-muted">Daftar list Result IMT terdaftar</small>
                     </div>
                     <div class="flex"></div>
                     <div>
-                        <a href="{{ route('tambah-kelas') }}" class="btn btn-md text-muted">
-                            <span class="d-none d-sm-inline mx-1">Tambah Kelas</span>
+                        <a href="{{ route('tambah-result-imt') }}" class="btn btn-md text-muted">
+                            <span class="d-none d-sm-inline mx-1">Tambah Result IMT</span>
                             <i data-feather="arrow-right"></i>
                         </a>
                     </div>
@@ -117,9 +133,11 @@
                         <table id="datatable" class="table table-theme table-row v-middle">
                             <thead>
                                 <tr>
-                                    <th><span class="text-muted">Kelas</span></th>
-                                    <th><span class="text-muted">Tanggal Dibuat</span></th>
-                                    <th><span class="text-muted">Nama Sekolah</span></th>
+                                    <th><span class="text-muted">Result</span></th>
+                                    <th><span class="text-muted">Jenis Klamin</span></th>
+                                    <th><span class="text-muted">Start Berat</span></th>
+                                    <th><span class="text-muted">End Berat</span></th>
+                                    <th><span class="text-muted">Dibuat</span></th>
                                     <th><span class="text-muted">Aksi</span></th>
 
                                 </tr>
@@ -151,14 +169,15 @@
 
         }
 
-        function setParameterEdit(id, sekolah_id, nama_sekolah, kelas) {
-            console.log(id, sekolah_id, nama_sekolah, kelas);
-
+        function setParameterEdit(id, result, gender, start_value, end_value) {
             document.getElementById('id').value = id;
-            document.getElementById('sekolah_id_existing').value = sekolah_id;
-            document.getElementById('sekolah_id_existing').text = nama_sekolah;
-            document.getElementById('kelas').value = kelas;
+            document.getElementById('result').value = result;
+            document.getElementById('resultT').value = result;
 
+            document.getElementById('gender').value = gender;
+            document.getElementById('start_value').value = start_value;
+            document.getElementById('end_value').value = end_value;
+            document.getElementById('genderT').value = gender;
 
 
         }
@@ -172,18 +191,25 @@
             },
 
             columns: [{
-                    data: 'kelas',
-                    name: 'kelas'
+                    data: 'result',
+                    name: 'result'
+                },
+                {
+                    data: 'gender',
+                    name: 'gender'
+                },
+                {
+                    data: 'start_value',
+                    name: 'start_value'
+                },
+                {
+                    data: 'end_value',
+                    name: 'end_value'
                 },
                 {
                     data: 'created_at',
                     name: 'created_at'
                 },
-                {
-                    data: 'nama_sekolah',
-                    name: 'nama_sekolah'
-                },
-
                 {
                     data: 'action',
                     name: 'action',
@@ -195,4 +221,3 @@
         });
     </script>
 @endpush
-{{-- 3.500.000.000 --}}

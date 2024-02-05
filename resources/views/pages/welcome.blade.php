@@ -12,47 +12,44 @@
                 <div class="col-sm-4 col-md-8" style="margin-bottom: 100px">
                     <div>
                         <ul class="nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#home">Push Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu1">Sit Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu2">Back Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu3">Squat Jump</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#menu4">Pull Up</a>
-                            </li>
+                            @foreach ($serve as $count => $serves)
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($count == 0) active @endif" data-toggle="pill"
+                                        href="#menu{{ $serves->id }}">{{ $serves->judul }}</a>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
 
                     <!-- Tab panes -->
                     <div class="tab-content ">
-                        <div class="tab-pane container fade active mt-4" style="height: 80%;" id="home">
-                            <iframe width="100%" height="80%"
-                                src="https://www.youtube.com/embed/{{ substr($data->url_video, 17) }}"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                            <div>
-                                {!! $data->deskripsi !!}
-                            </div>
 
-                        </div>
-                        <div class="tab-pane container fade" id="menu1">...</div>
-                        <div class="tab-pane container fade" id="menu2">...</div>
-                        <div class="tab-pane container fade" id="menu3">...</div>
-                        <div class="tab-pane container fade" id="menu4">...</div>
+                        @foreach ($serve as $count => $serves)
+                            <div class="tab-pane container fade @if ($count == 0) active show @endif  mt-4"
+                                style="height: 80%;" id="menu{{ $serves->id }}">
+                                <iframe width="100%" height="70%"
+                                    src="https://www.youtube.com/embed/{{ substr($serves->url_video, 17) }}"
+                                    {{-- title="YouTube video player" frameborder="0" --}} type="text/html" {{-- allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" --}} allowfullscreen></iframe>
+                                <div class="mt-4">
+                                    {!! $serves->deskripsi !!}
+                                </div>
+
+                            </div>
+                        @endforeach
+
+
+
 
                     </div>
 
+
+
+
+
                 </div>
                 <div class="col-md-4 p-4">
-                    <form action="{{ route('update-materi', $data->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('submit-freetes') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 mb-2">IMT</div>
@@ -65,8 +62,8 @@
                                 <label class="text-muted">Jenis Klamin</label>
                                 <select class="form-control" name="jenis_klamin" id="jenis_klamin" required>
                                     <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="">Laki - Laki</option>
-                                    <option value="">Perempuan</option>
+                                    <option value="PRIA">Laki - Laki</option>
+                                    <option value="WANITA">Perempuan</option>
 
                                 </select>
                             </div>
@@ -100,8 +97,8 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="text-muted">Squat Jump</label>
-                                <input type="number" step="0.01" id="squatjump" name="squatjump"
-                                    class="form-control" required>
+                                <input type="number" step="0.01" id="squatjump" name="squatjump" class="form-control"
+                                    required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="text-muted">Pull Up</label>
@@ -115,18 +112,18 @@
                                 <p>Tes Kebugaran</p>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="text-muted">Push Up</label>
+                                <label class="text-muted">Jenis Tes</label>
                                 <div class="row ml-2">
                                     <div class="form-check col-md-6">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            onclick="hiddenRookport()" id="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" value="cooper"
+                                            name="flexRadioDefault" onclick="hiddenRookport()" id="flexRadioDefault1">
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             Cooper Test
                                         </label>
                                     </div>
                                     <div class="form-check col-md-6">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            onclick="showRookport()" id="flexRadioDefault2">
+                                        <input class="form-check-input" type="radio" value="rookport"
+                                            name="flexRadioDefault" onclick="showRookport()" id="flexRadioDefault2">
                                         <label class="form-check-label" for="flexRadioDefault2">
                                             Rookport Test
                                         </label>
@@ -136,32 +133,32 @@
                             </div>
                             <div class="form-group col-md-6" id="coop1">
                                 <label class="text-muted">Waktu Lari</label>
-                                <input type="number" step="0.01" id="waktu_lari" name="waktu_lari"
-                                    class="form-control" placeholder="menit" required>
+                                <input type="number" step="0.01" id="waktu_lari_coop" name="waktu_lari_coop"
+                                    class="form-control" placeholder="menit">
                             </div>
                             <div class="form-group col-md-6" id="coop2">
                                 <label class="text-muted">Detik</label>
-                                <input type="number" step="0.01" id="detik" name="detik" class="form-control"
-                                    required>
+                                <input type="number" step="0.01" id="detik_coop" name="detik_coop" max="59"
+                                    class="form-control">
                             </div>
                             <div class="form-group col-md-12  hiddendong" id="rook1">
                                 <label class="text-muted">Denyut Nadi Sebelum jalan</label>
                                 <input type="number" step="0.01" id="waktu_lari" name="waktu_lari"
-                                    class="form-control" placeholder="/menit" required>
+                                    class="form-control" placeholder="/menit">
                             </div>
                             <div class="form-group col-md-12  hiddendong" id="rook2">
                                 <label class="text-muted">Waktu jalan</label>
-                                <input type="number" step="0.01" id="detik" name="detik" class="form-control"
-                                    placeholder="menit" required>
+                                <input type="number" step="0.01" id="waktu_jalan" name="waktu_jalan"
+                                    class="form-control" placeholder="menit">
                             </div>
                             <div class="form-group col-md-12  hiddendong" id="rook3">
                                 <label class="text-muted">Denyut Nadi sesudah jalan</label>
-                                <input type="number" step="0.01" id="detik" name="detik" class="form-control"
-                                    required>
+                                <input type="number" step="0.01" id="denyut_nadi_setelah" name="denyut_nadi_setelah"
+                                    placeholder="/menit" class="form-control">
                             </div>
 
                         </div>
-                        <button type="submit" class="btn btn-primary mt-5 float-right">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3 float-right">Submit</button>
                     </form>
 
                 </div>

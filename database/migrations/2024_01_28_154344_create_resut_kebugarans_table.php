@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('resut_kebugarans', function (Blueprint $table) {
             $table->id();
-            $table->double('start_value', 3, 2);
-            $table->double('end_value', 3, 2)->nullable();
+            $table->double('start_value', 8, 2);
+            $table->double('end_value', 8, 2)->nullable();
             $table->string('jenis_klamin');
             $table->string('result');
             $table->softDeletes();

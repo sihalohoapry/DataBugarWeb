@@ -14,6 +14,6 @@ class ResutIMT extends Model
         'end_value',
         'start_value',
         'result',
+        'gender',
     ];
-
 }
