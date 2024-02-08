@@ -44,7 +44,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama Sekolah</label>
-                                <select class="form-control" name="sekolah_id" id="sekolah_id" required>
+                                <select class="form-control" name="sekolah_id" id="sekolah_id" @readonly(true) required>
                                     <option id="sekolah_id_existing" value="">Pilih Sekolah</option>
 
                                     @foreach ($sekolah as $item)
@@ -113,27 +113,38 @@
             </div>
             <div class="page-content page-container" id="page-content">
                 <div class="padding">
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-theme table-row v-middle">
-                            <thead>
-                                <tr>
-                                    <th><span class="text-muted">Kelas</span></th>
-                                    <th><span class="text-muted">Tanggal Dibuat</span></th>
-                                    <th><span class="text-muted">Nama Sekolah</span></th>
-                                    <th><span class="text-muted">Aksi</span></th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                {{-- @foreach ($data as $row) --}}
+                    <div class="row">
 
-                                {{-- @endforeach --}}
-                            </tbody>
-                        </table>
+                        @if (count($datas) == 0)
+                            <div class="col-md-12 card mr-2 mt-2 text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Data Kosong</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Silahkan tambah data</h6>
+                                    <a class="btn btn-primary text-white" data-toggle="modal" data-target="#ModalEdit">
+                                        Tambah Data
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+
+                        @foreach ($datas as $item)
+                            <div class="col-md-3 card mr-2 mt-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $item->kelas }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ $item->nama_sekolah }}</h6>
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete"
+                                        onclick="setParameter('{{ $item->id }}')">Delete</button>
+                                    <a class="btn btn-primary text-white" data-toggle="modal" data-target="#ModalEdit"
+                                        onclick = "setParameterEdit('{{ $item->id }}', '{{ $item->sekolah_id }}', ' {{ $item->nama_sekolah }}' , ' {{ $item->kelas }} ')">
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
+
+
                 </div>
             </div>
         </div>

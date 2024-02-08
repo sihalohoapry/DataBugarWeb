@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guru\SiswaController;
 use App\Models\MateriVideo;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,17 @@ Route::post('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::cla
 Route::get('/edit-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'editGuru'])->name('edit-guru')->middleware(['auth']);
 Route::post('/delete-guru', [App\Http\Controllers\Admin\GuruController::class, 'deleteGuru'])->name('delete-guru')->middleware(['auth']);
 Route::put('/guru/update-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'updateGuru'])->name('update-guru')->middleware(['auth']);
+
+
+//guru
+Route::get('/siswa', [App\Http\Controllers\Guru\SiswaController::class, 'index'])->name('siswa')->middleware(['auth']);
+Route::get('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'add'])->name('tambah-siswa')->middleware(['auth']);
+Route::post('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'createSiswa'])->name('create-siswa')->middleware(['auth']);
+Route::post('/siswa/upload-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'uploadSiswa'])->name('upload-siswa')->middleware(['auth']);
+Route::post('/delete-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'deleteSiswa'])->name('delete-siswa')->middleware(['auth']);
+Route::put('/guru/update-guru/{id}', [App\Http\Controllers\Guru\SiswaController::class, 'updateGuru'])->name('update-guru')->middleware(['auth']);
+
+Route::get('/sistem/download', [SiswaController::class, 'downloadTemplate'])->name('download')->middleware(['auth']);
 
 
 Route::get('/result-imt', [App\Http\Controllers\Admin\ResultController::class, 'index'])->name('result-imt')->middleware(['auth']);
