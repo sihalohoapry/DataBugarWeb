@@ -15,15 +15,13 @@
                 <div class="card-body row">
                     <div class="col-md-4">
                         <div
-                            class="card @if ($resultIMT->result == 'NORMAL') border-success
-                        @else
-                            border-warning @endif  mb-3">
+                            class="card @if ($resultIMT->result != 'NORMAL') border-warning
+                        @else border-success @endif  mb-3">
                             <div class="card-header">Hasil IMT</div>
                             <div class="card-body ">
                                 <h5
-                                    class="card-title @if ($resultIMT->result == 'NORMAL') text-success
-                                @else
-                                    text-warning @endif ">
+                                    class="card-title @if ($resultIMT->result != 'NORMAL') text-warning @else
+                                     text-success @endif ">
                                     {{ $resultIMT->result }}</h5>
                                 <p class="card-text">Angka IMT mu <b style="color: black">{{ $inputResult }}</b> hasil dari
                                     berat badan
