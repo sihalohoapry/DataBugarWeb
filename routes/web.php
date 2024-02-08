@@ -32,7 +32,7 @@ Route::post('/submit-freetes', [App\Http\Controllers\Admin\FreeTesController::cl
 Route::get('/guru', [App\Http\Controllers\Admin\GuruController::class, 'index'])->name('guru')->middleware(['auth']);
 Route::get('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::class, 'add'])->name('tambah-guru')->middleware(['auth']);
 Route::post('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::class, 'create'])->name('create-guru')->middleware(['auth']);
-Route::get('/edit/{id}', [App\Http\Controllers\Admin\GuruController::class, 'editGuru'])->name('edit-guru')->middleware(['auth']);
+Route::get('/edit-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'editGuru'])->name('edit-guru')->middleware(['auth']);
 Route::post('/delete-guru', [App\Http\Controllers\Admin\GuruController::class, 'deleteGuru'])->name('delete-guru')->middleware(['auth']);
 Route::put('/guru/update-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'updateGuru'])->name('update-guru')->middleware(['auth']);
 

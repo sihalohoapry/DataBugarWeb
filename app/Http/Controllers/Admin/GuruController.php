@@ -15,68 +15,73 @@ use function Laravel\Prompts\select;
 
 class GuruController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         if (request()->ajax()) {
             // $query = User::query()->where(['role'=>"GURU"]);
 
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
-                    ->where('role','=',"GURU")
-                    ->select('users.id','users.name', 'users.role', 'nama_sekolah','users.created_at','users.sekolah_id');
-            
+                ->where('role', '=', "GURU")
+                ->select('users.id', 'users.name', 'users.role', 'nama_sekolah', 'users.created_at', 'users.sekolah_id');
+
             return DataTables::of($query)
-            ->addColumn('action', function ($item) {
-                return '
+                ->addColumn('action', function ($item) {
+                    return '
                     <a class="btn btn-danger text-white" data-toggle="modal" data-target="#ModalDelete" onclick = "setParameter(' .  $item->id . ')" >
                                     Hapus
                                 </a>
-                    <a class="btn btn-primary text-white" href="'. route('edit-guru', $item->id) .'" >
+                    <a class="btn btn-primary text-white" href="' . route('edit-guru', $item->id) . '" >
                                     Edit
                     </a>
                 ';
-            })
-            ->editColumn('created_at', function ($query) {
-                return [
-                     Carbon::parse($query->created_at)->translatedFormat('d F Y'),
-                    
-                ];
-            })
-            ->rawColumns(['action'])
-            ->make(true);
+                })
+                ->editColumn('created_at', function ($query) {
+                    return [
+                        Carbon::parse($query->created_at)->translatedFormat('d F Y'),
+
+                    ];
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
         return view("pages.admin.guru");
     }
 
-    public function add(){
+    public function add()
+    {
         $sekloah = Sekolah::all();
-        return view('pages.admin.tambah-guru',['sekolah' => $sekloah],);
+        return view('pages.admin.tambah-guru', ['sekolah' => $sekloah],);
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         try {
             $data = $request->all();
             $data['password'] = Hash::make(date('dmY', strtotime($request->date_of_birth)));
             User::create($data);
             return redirect()->route('guru')->with('status', 'Berhasil menambah guru');
         } catch (\Throwable $th) {
-            return redirect()->route('guru')->with('fail', 'Gagal menambah data guru msg: '.$th);
+            return redirect()->route('guru')->with('fail', 'Gagal menambah data guru msg: ' . $th);
         }
-        
     }
 
-    public function deleteGuru(Request $request){
+    public function deleteGuru(Request $request)
+    {
         $data = User::findOrFail($request->idData);
         $data->delete();
         return redirect()->route('guru')->with('status', 'Berhasil menghapus user');
     }
 
-    public function editGuru($id){
+    public function editGuru($id)
+    {
         $data = User::findOrFail($id);
         $sekolahSekarang = Sekolah::findOrFail($data->sekolah_id);
         $sekloah = Sekolah::all();
-        return view('pages.admin.edit-guru',['data'=>$data, 'sekolah'=>$sekloah, 'sekolahSekarang'=>$sekolahSekarang]);
+        return view('pages.admin.edit-guru', ['data' => $data, 'sekolah' => $sekloah, 'sekolahSekarang' => $sekolahSekarang]);
     }
 
-    public function updateGuru(Request $request, $id){
+    public function updateGuru(Request $request, $id)
+    {
         try {
             $updateData = User::findOrFail($id);
             $updateData['name'] = $request->name;
@@ -90,8 +95,7 @@ class GuruController extends Controller
             $updateData->update();
             return redirect()->route('guru')->with('status', 'Berhasil mengedit guru');
         } catch (\Throwable $th) {
-            return redirect()->route('guru')->with('fail', 'Gagal menambah data guru msg: '.$th);
+            return redirect()->route('guru')->with('fail', 'Gagal menambah data guru msg: ' . $th);
         }
     }
-
 }
