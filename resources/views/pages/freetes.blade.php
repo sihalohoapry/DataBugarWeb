@@ -14,10 +14,24 @@
                 </div>
                 <div class="card-body row">
                     <div class="col-md-4">
-                        <div class="card  mb-3">
+                        <div
+                            class="card @if (
+                                $resultIMT->result == 'OBESITAS' ||
+                                    $resultIMT->result == 'SANGAT KURUS' ||
+                                    $resultIMT->result == 'KURUS' ||
+                                    $resultIMT->result == 'BERAT BERLEBIHAN' ||
+                                    $resultIMT->result == 'SANGAT KURUS') border-warning
+                        @else border-success @endif  mb-3">
                             <div class="card-header">Hasil IMT</div>
                             <div class="card-body ">
-                                <h5 class="card-title  ">
+                                <h5
+                                    class="card-title @if (
+                                        $resultIMT->result == 'OBESITAS' ||
+                                            $resultIMT->result == 'SANGAT KURUS' ||
+                                            $resultIMT->result == 'KURUS' ||
+                                            $resultIMT->result == 'BERAT BERLEBIHAN' ||
+                                            $resultIMT->result == 'SANGAT KURUS') text-warning @else
+                                     text-success @endif ">
                                     {{ $resultIMT->result }}</h5>
                                 <p class="card-text">Angka IMT mu <b style="color: black">{{ $inputResult }}</b> hasil dari
                                     berat badan
