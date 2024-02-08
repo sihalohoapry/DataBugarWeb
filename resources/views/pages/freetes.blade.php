@@ -15,13 +15,13 @@
                 <div class="card-body row">
                     <div class="col-md-4">
                         <div
-                            class="card @if ($resultIMT->result = 'NORMAL') border-success
+                            class="card @if () border-success
                         @else
                             border-warning @endif mb-3">
                             <div class="card-header">Hasil IMT</div>
                             <div class="card-body ">
                                 <h5
-                                    class="card-title @if ($resultIMT->result = 'NORMAL') text-success
+                                    class="card-title @if () text-success
                         @else
                             text-warning @endif">
                                     {{ $resultIMT->result }}</h5>
