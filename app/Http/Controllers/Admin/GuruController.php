@@ -57,6 +57,7 @@ class GuruController extends Controller
     {
         try {
             $data = $request->all();
+            $data['user'] = $request->nuptk;
             $data['password'] = Hash::make(date('dmY', strtotime($request->date_of_birth)));
             User::create($data);
             return redirect()->route('guru')->with('status', 'Berhasil menambah guru');
