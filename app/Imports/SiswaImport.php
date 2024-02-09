@@ -41,6 +41,7 @@ class SiswaImport implements ToModel, WithHeadingRow
                 'nisn' => $row['nisn'],
                 'user' => $row['nisn'],
                 'sekolah_id' => Auth::user()->sekolah_id,
+                'guru_id' => Auth::user()->id,
                 'user' => $row['nisn'],
                 'role' => 'SISWA',
                 'class' => $this->data,

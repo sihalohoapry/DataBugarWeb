@@ -27,15 +27,18 @@ class SiswaController extends Controller
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'users.class', '=', 'kelas.id')
                 ->where('kelas.id', '=', $request->kelas)
+                ->where('users.guru_id', '=', Auth::user()->id)
                 ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas')->get();
         } elseif ($request->nama) {
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'users.class', '=', 'kelas.id')
                 ->where('name', 'LIKE', '%' . $request->nama . '%')
+                ->where('users.guru_id', '=', Auth::user()->id)
                 ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas')->get();
         } else {
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'users.class', '=', 'kelas.id')
+                ->where('users.guru_id', '=', Auth::user()->id)
                 ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas')->get();
         }
 
@@ -64,6 +67,7 @@ class SiswaController extends Controller
         } else {
             $data = $request->all();
             $data['name'] = $request->nama;
+            $data['guru_id'] = Auth::user()->id;
             $data['nisn'] = $request->nisn;
             $data['user'] = $request->nisn;
             $data['sekolah_id'] = Auth::user()->sekolah_id;

@@ -43,7 +43,9 @@ class KelasController extends Controller
         // }
 
         $query = Kelas::join('sekolahs', 'kelas.sekolah_id', '=', 'sekolahs.id')
-            ->select('kelas.id', 'kelas.created_at', 'kelas.kelas', 'nama_sekolah', 'kelas.sekolah_id')->get();
+            ->select('kelas.id', 'kelas.created_at', 'kelas.kelas', 'nama_sekolah', 'kelas.sekolah_id')
+            ->where('kelas.user_id', '=', Auth::user()->id)
+            ->get();
 
         $sekloah = Sekolah::all();
 
