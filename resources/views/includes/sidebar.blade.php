@@ -17,15 +17,14 @@
         <div class="flex scrollable hover">
             <div class="nav-active-text-primary" data-nav>
                 <ul class="nav bg">
-                    @if (Auth::user()->role == 'ADMIN')
-                        <li>
-                            <a href="{{ route('home') }}">
-                                <span class="nav-icon"><i data-feather='monitor'></i></span>
-                                <span
-                                    class="nav-text {{ request()->is('home*') ? 'text-primary' : '' }}">Dashboard</span>
-                            </a>
+                    <li>
+                        <a href="{{ route('home') }}">
+                            <span class="nav-icon"><i data-feather='monitor'></i></span>
+                            <span class="nav-text {{ request()->is('home*') ? 'text-primary' : '' }}">Home</span>
+                        </a>
 
-                        </li>
+                    </li>
+                    @if (Auth::user()->role == 'ADMIN')
                         <li>
                             <a href="{{ route('guru') }}">
                                 <span class="nav-icon"><i data-feather='list'></i></span>
@@ -86,7 +85,44 @@
                             </a>
 
                         </li>
+                        <li>
+                            <a href="{{ route('jadwal-tes') }}" class="">
+                                <span class="nav-icon"><i data-feather='list'></i></span>
+                                <span class="nav-text {{ request()->is('jadwal-tes*') ? 'text-primary' : '' }}">Jadwal
+                                    Tes</span>
+                            </a>
+
+                        </li>
                     @endif
+
+                    @if (Auth::user()->role == 'SISWA')
+                        <li>
+                            <a href="{{ route('jadwal-tes-siswa') }}">
+
+                                <span class="nav-icon"><i data-feather='list'></i></span>
+                                <span class="nav-text {{ request()->is('kelas*') ? 'text-primary' : '' }}">Jadwal
+                                    Test</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="{{ route('siswa') }}" class="">
+                                <span class="nav-icon"><i data-feather='list'></i></span>
+                                <span class="nav-text {{ request()->is('siswa*') ? 'text-primary' : '' }}">Test
+                                    Mandiri</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="{{ route('jadwal-tes') }}" class="">
+                                <span class="nav-icon"><i data-feather='list'></i></span>
+                                <span
+                                    class="nav-text {{ request()->is('jadwal-tes*') ? 'text-primary' : '' }}">Raport</span>
+                            </a>
+
+                        </li>
+                    @endif
+
                     <li>
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();

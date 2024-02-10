@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Siswa
+    Jadwal Test
 @endsection
 @push('addon-script')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
@@ -21,40 +21,45 @@
         @include('alert.success')
         @include('alert.failed')
         {{-- MODEL --}}
-        <div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="tambahJadwal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Upload Data Siswa</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Jadwal Tes</h4>
                         <button type="button" class="btn btn-close" data-dismiss="modal">
                             {{-- <span aria-hidden="true">&times;</span> --}}
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('upload-siswa') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('tambah-jadwal') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="exampleInputtext1" class="form-label">Upload Data</label>
+                                <label for="exampleInputtext1" class="form-label">Tanggal Mulai Tes</label>
+
+                                <input type="datetime-local" id="start_tes" name="start_tes" class="form-control" required>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputtext1" class="form-label">Tanggal Selesai Tes</label>
+
+                                <input type="datetime-local" id="end_tes" name="end_tes" class="form-control" required>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleInputtext1" class="form-label">Kelas</label>
 
                                 <select class="form-control" name="kelas" id="kelas" required>
-                                    <option value="">Pilih Kelas</option>
+                                    <option value="">==Pilih Kelas==</option>
 
                                     @foreach ($kelas as $item)
                                         <option value="{{ $item->id }}">{{ $item->kelas }}</option>
                                     @endforeach
                                 </select>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="exampleInputtext1" class="form-label">Upload Data</label>
-                                <input id="file_upload" type="file" class="form-control" name="file_upload"
-                                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                                    required>
-                                <p><span style="color: red">*</span><i>Harap upload sesuai dengan template</i></p>
-
-                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
@@ -71,47 +76,54 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Siswa Kelas</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit Jadwal Tes</h4>
                         <button type="button" class="btn btn-close" data-dismiss="modal">
                             {{-- <span aria-hidden="true">&times;</span> --}}
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('update-kelas') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update-jadwal') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" id="id" name="id">
-                            <input type="hidden" id="sekolah_id" name="sekolah_id">
+                            <input type="hidden" id="id2" name="id2">
+                            <input type="hidden" id="sekolah_id2" name="sekolah_id2">
+
+                            <div class="mb-3">
+                                <label for="exampleInputtext1" class="form-label">Tanggal Mulai Tes</label>
+
+                                <input type="datetime-local" id="start_tes2" name="start_tes2" class="form-control"
+                                    required>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputtext1" class="form-label">Tanggal Selesai Tes</label>
+
+                                <input type="datetime-local" id="end_tes2" name="end_tes2" class="form-control" required>
+
+                            </div>
 
                             <div class="mb-3">
                                 <label for="exampleInputtext1" class="form-label">Kelas</label>
-                                <input id="kelas" type="text" class="form-control" name="kelas" required>
 
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nama Sekolah</label>
-                                <select class="form-control" name="sekolah_id" id="sekolah_id" @readonly(true) required>
-                                    <option id="sekolah_id_existing" value="">Pilih Sekolah</option>
+                                <select class="form-control" name="class_id" required>
+                                    <option id="kelas2">==Pilih Kelas==</option>
 
-
+                                    @foreach ($kelas as $item)
+                                        <option value="{{ $item->id }}">{{ $item->kelas }}</option>
+                                    @endforeach
                                 </select>
-
-
-                                {{-- <input id="nama_sekolah" type="text" class="form-control"  name="nama_sekolah"> --}}
-
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
 
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
 
+                        </form>
                     </div>
+
                 </div>
             </div>
-            </form>
         </div>
 
         <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -125,7 +137,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('delete-siswa') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('delete-jadwal') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="idData" name="idData">
                             <p>Anda yakin menghapus data ini?</p>
@@ -147,8 +159,8 @@
             <div class="page-hero page-container " id="page-hero">
                 <div class="padding d-flex pt-0">
                     <div class="page-title">
-                        <h2 class="text-md text-highlight">Siswa</h2>
-                        <small class="text-muted">Daftar list siswa terdaftar</small>
+                        <h2 class="text-md text-highlight">Jadwal Tes</h2>
+                        <small class="text-muted">Daftar list jadwal tes terdaftar</small>
                     </div>
                     <div class="flex"></div>
                 </div>
@@ -160,18 +172,19 @@
 
                     <div class="card">
                         <div class="row mb-2">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="card-header">
                                     <strong>Filter Data</strong>
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('siswa') }}" method="GET" enctype="multipart/form-data">
+                                    <form action="{{ route('jadwal-tes') }}" method="GET"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label class="text-muted">Filter Nama</label>
+                                                <label class="text-muted">Cari Tes</label>
                                                 <input type="text" name="nama" class="form-control"
-                                                    placeholder="Search by Name" />
+                                                    placeholder="Search by Tes" />
                                             </div>
 
                                             <div class="form-group col-md-6">
@@ -187,58 +200,21 @@
                                         </div>
 
                                         <button class="btn btn-success filter float-md-right">Filter</button>
-                                        <a href="{{ route('siswa') }}"
+                                        <a href="{{ route('jadwal-tes') }}"
                                             class="btn btn-warning float-md-right mr-4">Reset</a>
                                     </form>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="card-header">
                                     <strong>Tambah Data</strong>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="{{ route('download') }}" class="btn btn-primary ml-4">Download
-                                            Template</a>
+                                        <a href="" class="btn btn-primary mt-4 ml-4" data-toggle="modal"
+                                            data-target="#tambahJadwal">
+                                            Tambah Data</a>
 
-                                    </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card flex">
-                                            <a href="" data-toggle="modal" data-target="#uploadFile">
-                                                <div class="card-body">
-                                                    <div class="d-flex align-items-center text-hover-success">
-                                                        <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                            <i data-feather="upload"></i>
-                                                        </div>
-                                                        <div class="px-4 flex">
-                                                            <div>Upload Data</div>
-                                                            <div class="text-success mt-2" id="total-sum">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card flex">
-                                            <a href="{{ route('tambah-siswa') }}">
-                                                <div class="card-body">
-                                                    <div class="d-flex align-items-center text-hover-success">
-                                                        <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                            <i data-feather="plus"></i>
-                                                        </div>
-                                                        <div class="px-4 flex">
-                                                            <div>Tambah Siswa</div>
-                                                            <div class="text-success mt-2" id="total-transaksi">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +227,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Data Kosong</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Silahkan tambah data</h6>
-                                    <a class="btn btn-primary text-white" href="{{ route('tambah-siswa') }}">
+                                    <a class="btn btn-primary text-white" data-toggle="modal"
+                                        data-target="#tambahJadwal">
                                         Tambah Data
                                     </a>
                                 </div>
@@ -259,26 +236,31 @@
                         @endif
 
                         @foreach ($datas as $item)
-                            <div class="col-md-3 card mt-2">
+                            <div class="col-md-4 card mt-2">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $item->name }}</h5>
+                                    <h5 class="card-title">{{ $item->nomer_tes }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $item->nama_sekolah }}</h6>
                                     <table class="table">
 
                                         <tbody>
                                             <tr>
-                                                <td>NISN</td>
-                                                <td>{{ $item->nisn }}</td>
-                                            </tr>
-                                            <tr>
                                                 <td>Kelas</td>
                                                 <td>{{ $item->kelas }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mulai Tes</td>
+                                                <td>{{ $item->start_tes }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Akhir Tes</td>
+                                                <td>{{ $item->end_tes }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete"
                                         onclick="setParameter('{{ $item->id }}')">Delete</button>
-                                    <a class="btn btn-primary text-white" href="{{ route('detail-siswa', $item->id) }}">
+                                    <a class="btn btn-primary text-white" data-toggle="modal" data-target="#ModalEdit"
+                                        onclick="setEdit('{{ $item->id }}','{{ $item->kelas }}','{{ $item->class_id }}','{{ $item->start_tes }}','{{ $item->end_tes }}','{{ $item->sekolah_id }}')">
                                         Edit
                                     </a>
                                 </div>
@@ -298,19 +280,27 @@
 @push('addon-script')
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 
-    <script>
+    {{-- <script>
         function setParameter(id) {
             document.getElementById('idData').value = id;
 
         }
 
-        function setParameterEdit(id, sekolah_id, nama_sekolah, kelas) {
-            console.log(id, sekolah_id, nama_sekolah, kelas);
+        function setEdit(id, kelas, class_id, start_tes, end_tes, sekolah_id) {
+            console.log(id, class_id, kelas, start_tes, end_tes, sekolah_id);
 
-            document.getElementById('id').value = id;
-            document.getElementById('sekolah_id_existing').value = sekolah_id;
-            document.getElementById('sekolah_id_existing').text = nama_sekolah;
-            document.getElementById('kelas').value = kelas;
+            document.getElementById('id2').value = id;
+            document.getElementById('kelas2').value = class_id;
+            document.getElementById('kelas2').text = kelas;
+            document.getElementById('sekolah_id2').value = sekolah_id;
+
+
+
+            document.getElementById('end_tes2').value = end_tes;
+            document.getElementById('start_tes2').value = start_tes;
+
+
+
 
 
 
@@ -346,6 +336,6 @@
                 },
             ],
         });
-    </script>
+    </script> --}}
 @endpush
 {{-- 3.500.000.000 --}}

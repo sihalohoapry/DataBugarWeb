@@ -44,9 +44,31 @@ Route::get('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::cl
 Route::post('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'createSiswa'])->name('create-siswa')->middleware(['auth']);
 Route::post('/siswa/upload-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'uploadSiswa'])->name('upload-siswa')->middleware(['auth']);
 Route::post('/delete-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'deleteSiswa'])->name('delete-siswa')->middleware(['auth']);
-Route::put('/guru/update-guru/{id}', [App\Http\Controllers\Guru\SiswaController::class, 'updateGuru'])->name('update-guru')->middleware(['auth']);
-
+Route::post('/update-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'updateSiswa'])->name('update-siswa')->middleware(['auth']);
+Route::get('/siswa/detail-siswa/{id}', [App\Http\Controllers\Guru\SiswaController::class, 'detailSiswa'])->name('detail-siswa')->middleware(['auth']);
 Route::get('/sistem/download', [SiswaController::class, 'downloadTemplate'])->name('download')->middleware(['auth']);
+
+
+Route::get('/jadwal-tes', [App\Http\Controllers\Guru\JadwalTesController::class, 'index'])->name('jadwal-tes')->middleware(['auth']);
+Route::post('/update-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'updateJadwal'])->name('update-jadwal')->middleware(['auth']);
+Route::post('/jadwal-tes/tambah-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'createJadwal'])->name('tambah-jadwal')->middleware(['auth']);
+Route::post('/delete-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'deleteJadwal'])->name('delete-jadwal')->middleware(['auth']);
+
+
+
+//siswa
+Route::get('/jadwal-tes-siswa', [App\Http\Controllers\Siswa\SiswaController::class, 'indexJadwal'])->name('jadwal-tes-siswa')->middleware(['auth']);
+Route::get('/mulai-test/{id}', [App\Http\Controllers\Siswa\SiswaController::class, 'mulaiTest'])->name('mulai-test')->middleware(['auth']);
+Route::post('/met-berat', [App\Http\Controllers\Siswa\SiswaController::class, 'metBerat'])->name('met-berat')->middleware(['auth']);
+Route::post('/met-sedang', [App\Http\Controllers\Siswa\SiswaController::class, 'metSedang'])->name('met-sedang')->middleware(['auth']);
+Route::post('/met-ringan', [App\Http\Controllers\Siswa\SiswaController::class, 'metRingan'])->name('met-ringan')->middleware(['auth']);
+
+
+
+
+
+
+
 
 
 Route::get('/result-imt', [App\Http\Controllers\Admin\ResultController::class, 'index'])->name('result-imt')->middleware(['auth']);

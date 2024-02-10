@@ -47,7 +47,7 @@ class KelasController extends Controller
             ->where('kelas.user_id', '=', Auth::user()->id)
             ->get();
 
-        $sekloah = Sekolah::all();
+        $sekloah = Sekolah::findOrFail(Auth::user()->sekolah_id);
 
         return view("pages.admin.kelas", [
             'sekolah' => $sekloah,

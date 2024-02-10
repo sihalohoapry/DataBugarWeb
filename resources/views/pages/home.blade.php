@@ -174,6 +174,65 @@
 
                         </div>
                     @endif
+
+                    @if (Auth::user()->role == 'SISWA')
+                        <div class="row row-sm sr">
+                            <div class="col-md-4 d-flex">
+                                <div class="card flex">
+                                    <a href="{{ route('jadwal-tes-siswa') }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                    <i data-feather="users"></i>
+                                                </div>
+                                                <div class="px-4 flex">
+                                                    <div style="text-decoration: none">Jadwal Test</div>
+                                                    <div class="text-success mt-2">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex">
+                                <div class="card flex">
+                                    <a href="">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-success">
+                                                    <i data-feather="users"></i>
+                                                </div>
+                                                <div class="px-4 flex">
+                                                    <div>Test Mandiri</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex">
+                                <div class="card flex">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center text-hover-success">
+                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                <i data-feather="monitor"></i>
+                                            </div>
+                                            <div class="px-4 flex">
+                                                <div>Raport</div>
+                                                <div class="text-success mt-2">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endif
                 </div>
             </div>
 

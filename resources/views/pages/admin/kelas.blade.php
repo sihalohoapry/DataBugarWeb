@@ -45,24 +45,20 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nama Sekolah</label>
                                 <select class="form-control" name="sekolah_id" id="sekolah_id" @readonly(true) required>
-                                    <option id="sekolah_id_existing" value="">Pilih Sekolah</option>
+                                    <option value="{{ $sekolah->id }}">{{ $sekolah->nama_sekolah }}</option>
 
-                                    @foreach ($sekolah as $item)
+                                    {{-- @foreach ($sekolah as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_sekolah }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
 
-
-                                {{-- <input id="nama_sekolah" type="text" class="form-control"  name="nama_sekolah"> --}}
-
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
 
                             </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -121,7 +117,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Data Kosong</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Silahkan tambah data</h6>
-                                    <a class="btn btn-primary text-white" data-toggle="modal" data-target="#ModalEdit">
+                                    <a href="{{ route('tambah-kelas') }}" class="btn btn-primary text-white">
                                         Tambah Data
                                     </a>
                                 </div>
