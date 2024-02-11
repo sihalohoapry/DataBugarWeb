@@ -23,6 +23,7 @@ class TesMET extends Model
         'hasil_berat',
         'hasil_sedang',
         'hasil_ringan',
-        'hasil_met'
+        'hasil_met',
+        'result_met'
     ];
 }

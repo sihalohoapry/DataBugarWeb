@@ -85,7 +85,7 @@ class JadwalTesController extends Controller
 
             $data['created_by'] = Auth::user()->id;
             $data['class_id'] = $request->kelas;
-            $data['nomer_tes'] = "BGR00" . $count;
+            $data['nomer_tes'] = "BGR00" . $count + 1;
             $data['sekolah_id'] = Auth::user()->sekolah_id;
 
             JadwalTest::create($data);
@@ -103,9 +103,9 @@ class JadwalTesController extends Controller
         try {
             $data = JadwalTest::findOrFail($request->idData);
             $data->delete();
-            return redirect()->route('jadwal-tes')->with('status', 'Berhasil menghapus siswa');
+            return redirect()->route('jadwal-tes')->with('status', 'Berhasil menghapus jadwal');
         } catch (\Throwable $e) {
-            return redirect()->route('jadwal-tes')->with('fail', 'Gagal menghapus siswa');
+            return redirect()->route('jadwal-tes')->with('fail', 'Gagal menghapus jadwal' . $e);
         }
     }
 

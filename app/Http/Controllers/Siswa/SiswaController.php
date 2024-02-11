@@ -41,6 +41,15 @@ class SiswaController extends Controller
                     $data['hasil_berat'] = $hasil;
                     $hasilMET = $hasil + 0 + 0;
                     $data['hasil_met'] = $hasilMET;
+                    if ($hasilMET > 1500) {
+                        $data['result_met'] = 'TINGGI';
+                    }
+                    if (600 < $hasilMET && $hasilMET <= 1500) {
+                        $data['result_met'] = 'MENENGAH';
+                    }
+                    if (600 >= $hasilMET) {
+                        $data['result_met'] = 'RENDAH';
+                    }
                 } else {
                     $data['is_fisik_berat'] = false;
                 }
@@ -58,6 +67,15 @@ class SiswaController extends Controller
                     $hasil = 8 * $request->repetisi_berat * $request->lama;
                     $updateData['hasil_berat'] = $hasil;
                     $updateData['hasil_met'] = $hasil + $updateData->hasil_sedang + $updateData->hasil_ringan;
+                    if ($updateData['hasil_met'] > 1500) {
+                        $updateData['result_met'] = 'TINGGI';
+                    }
+                    if (600 < $updateData['hasil_met'] && $updateData['hasil_met'] <= 1500) {
+                        $updateData['result_met'] = 'MENENGAH';
+                    }
+                    if (600 >= $updateData['hasil_met']) {
+                        $updateData['result_met'] = 'RENDAH';
+                    }
                 } else {
                     $updateData['is_fisik_berat'] = true;
                 }
@@ -85,6 +103,15 @@ class SiswaController extends Controller
                     $data['hasil_sedang'] = $hasil;
                     $hasilMET = $hasil + 0 + 0;
                     $data['hasil_met'] = $hasilMET;
+                    if ($hasilMET > 1500) {
+                        $data['result_met'] = 'TINGGI';
+                    }
+                    if (600 < $hasilMET && $hasilMET <= 1500) {
+                        $data['result_met'] = 'MENENGAH';
+                    }
+                    if (600 >= $hasilMET) {
+                        $data['result_met'] = 'RENDAH';
+                    }
                 } else {
                     $data['is_fisik_sedang'] = true;
                 }
@@ -103,6 +130,15 @@ class SiswaController extends Controller
                     $hasil = 4 * $request->repetisi * $request->lama;
                     $updateData['hasil_sedang'] = $hasil;
                     $updateData['hasil_met'] = $hasil + $updateData->hasil_berat + $updateData->hasil_ringan;
+                    if ($updateData['hasil_met'] > 1500) {
+                        $updateData['result_met'] = 'TINGGI';
+                    }
+                    if (600 < $updateData['hasil_met'] && $updateData['hasil_met'] <= 1500) {
+                        $updateData['result_met'] = 'MENENGAH';
+                    }
+                    if (600 >= $updateData['hasil_met']) {
+                        $updateData['result_met'] = 'RENDAH';
+                    }
                 } else {
                     $updateData['is_fisik_sedang'] = true;
                 }
@@ -130,6 +166,15 @@ class SiswaController extends Controller
                     $data['hasil_ringan'] = $hasil;
                     $hasilMET = $hasil + 0 + 0;
                     $data['hasil_met'] = $hasilMET;
+                    if ($hasilMET > 1500) {
+                        $data['result_met'] = 'TINGGI';
+                    }
+                    if (600 < $hasilMET && $hasilMET <= 1500) {
+                        $data['result_met'] = 'MENENGAH';
+                    }
+                    if (600 >= $hasilMET) {
+                        $data['result_met'] = 'RENDAH';
+                    }
                 } else {
                     $data['is_fisik_ringan'] = true;
                 }
@@ -147,6 +192,15 @@ class SiswaController extends Controller
                 $updateData['hasil_ringan'] = $hasil;
                 $updateData['hasil_met'] = $hasil + $updateData->hasil_berat + $updateData->hasil_sedang;
                 $updateData->update();
+                if ($updateData['hasil_met'] > 1500) {
+                    $updateData['result_met'] = 'TINGGI';
+                }
+                if (600 < $updateData['hasil_met'] && $updateData['hasil_met'] <= 1500) {
+                    $updateData['result_met'] = 'MENENGAH';
+                }
+                if (600 >= $updateData['hasil_met']) {
+                    $updateData['result_met'] = 'RENDAH';
+                }
                 return redirect()->route('mulai-test', $request->id)->with('status', 'Berhasil update tes MET bagian Aktifitas Fisik ringan');
             }
         } catch (\Throwable $e) {

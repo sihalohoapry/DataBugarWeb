@@ -28,6 +28,7 @@ return new class extends Migration
             $table->double('hasil_sedang')->nullable();
             $table->double('hasil_ringan')->nullable();
             $table->double('hasil_met')->nullable();
+            $table->string('result_met')->nullable();
             $table->softDeletes();
 
             $table->timestamps();

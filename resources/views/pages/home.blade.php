@@ -32,6 +32,7 @@
                                             <div class="px-4 flex">
                                                 <div>User Terdaftar</div>
                                                 <div class="text-success mt-2">
+                                                    {{ $countSiswa }} siswa.
                                                 </div>
                                             </div>
 
@@ -49,7 +50,7 @@
                                             <div class="px-4 flex">
                                                 <div>Guru Terdaftar</div>
                                                 <div class="text-success mt-2">
-                                                    orang
+                                                    {{ $countGuru }} guru.
                                                 </div>
                                             </div>
 
@@ -68,6 +69,7 @@
                                             <div class="px-4 flex">
                                                 <div>Kelas</div>
                                                 <div class="text-success mt-2">
+                                                    {{ $countKelas }} kelas.
                                                 </div>
                                             </div>
 
@@ -85,6 +87,7 @@
                                             <div class="px-4 flex">
                                                 <div>Materi Video</div>
                                                 <div class="text-success mt-2">
+                                                    {{ $countMateri }} materi.
                                                 </div>
                                             </div>
 
@@ -119,7 +122,7 @@
                             </div>
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <a href="">
+                                    <a href="{{ route('jadwal-tes') }}">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center text-hover-success">
                                                 <div class="avatar w-56 m-2 no-shadow gd-success">

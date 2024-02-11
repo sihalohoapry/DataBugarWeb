@@ -26,7 +26,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['auth']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home')->middleware(['auth']);
+Route::get('/dashboard', [App\Http\Controllers\Controller::class, 'home'])->name('dashboard')->middleware(['auth']);
+
 
 Route::post('/submit-freetes', [App\Http\Controllers\Admin\FreeTesController::class, 'submitFreetes'])->name('submit-freetes');
 
@@ -58,7 +60,7 @@ Route::post('/delete-jadwal', [App\Http\Controllers\Guru\JadwalTesController::cl
 
 //siswa
 Route::get('/jadwal-tes-siswa', [App\Http\Controllers\Siswa\SiswaController::class, 'indexJadwal'])->name('jadwal-tes-siswa')->middleware(['auth']);
-Route::get('/mulai-test/{id}', [App\Http\Controllers\Siswa\SiswaController::class, 'mulaiTest'])->name('mulai-test')->middleware(['auth']);
+Route::get('/jadwal-tes-siswa/mulai-test/{id}', [App\Http\Controllers\Siswa\SiswaController::class, 'mulaiTest'])->name('mulai-test')->middleware(['auth']);
 Route::post('/met-berat', [App\Http\Controllers\Siswa\SiswaController::class, 'metBerat'])->name('met-berat')->middleware(['auth']);
 Route::post('/met-sedang', [App\Http\Controllers\Siswa\SiswaController::class, 'metSedang'])->name('met-sedang')->middleware(['auth']);
 Route::post('/met-ringan', [App\Http\Controllers\Siswa\SiswaController::class, 'metRingan'])->name('met-ringan')->middleware(['auth']);

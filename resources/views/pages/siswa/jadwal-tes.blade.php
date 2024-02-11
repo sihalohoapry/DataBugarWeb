@@ -66,7 +66,6 @@
             <div class="page-content page-container" id="page-content">
                 <div class="padding">
                     <div class="row">
-
                         @if (count($datas) == 0)
                             <div class="col-md-12 card mr-2 mt-2 text-center">
                                 <div class="card-body">
@@ -85,28 +84,58 @@
                         <div class="col-md-12">
 
                             @foreach ($datas as $item)
-                                <div>
-                                    <button class="accordion">Tes No. {{ $item->nomer_tes }}</button>
-                                    <div class="panel">
+                                @if (Carbon\Carbon::parse($item->start_tes) < now() && Carbon\Carbon::parse($item->end_tes) > now())
+                                    <div class="mb-2">
+                                        <button class="accordion" style="color: green">Tes No.
+                                            {{ $item->nomer_tes }}</button>
+                                        <div class="panel">
 
-                                        <table class="table">
+                                            <table class="table">
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>Mulai Tes</td>
-                                                    <td>{{ $item->start_tes }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Akhir Tes</td>
-                                                    <td>{{ $item->end_tes }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Mulai Tes</td>
+                                                        <td>{{ $item->start_tes }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Akhir Tes</td>
+                                                        <td>{{ $item->end_tes }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
 
-                                        <a href="{{ route('mulai-test', $item->id) }}" class="btn btn-primary mb-2">Mulai
-                                            Tes</a>
+                                            <a href="{{ route('mulai-test', $item->id) }}"
+                                                class="btn btn-primary mb-2">Mulai
+                                                Tes</a>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="mb-2">
+                                        <button class="accordion"style="color: red">Tes
+                                            No. {{ $item->nomer_tes }}</button>
+                                        <div class="panel">
+                                            <p>Jadwal tes sudah terlewatkan</p>
+                                            <table class="table">
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Mulai Tes</td>
+                                                        <td>{{ $item->start_tes }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Akhir Tes</td>
+                                                        <td>{{ $item->end_tes }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            @if ($item)
+                                                <a href="" class="btn btn-success mb-2">Detail</a>
+                                            @endif
+                                        </div>
+
+
+                                    </div>
+                                @endif
                             @endforeach
 
 

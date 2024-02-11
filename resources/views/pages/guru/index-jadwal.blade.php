@@ -59,17 +59,16 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
 
+                            </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
-            </form>
         </div>
 
         <div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -280,7 +279,7 @@
 @push('addon-script')
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 
-    {{-- <script>
+    <script>
         function setParameter(id) {
             document.getElementById('idData').value = id;
 
@@ -306,36 +305,36 @@
 
         }
 
-        var datatable = $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ordering: true,
-            ajax: {
-                url: '{!! url()->current() !!}',
-            },
+        // var datatable = $('#datatable').DataTable({
+        //     processing: true,
+        //     serverSide: true,
+        //     ordering: true,
+        //     ajax: {
+        //         url: '{!! url()->current() !!}',
+        //     },
 
-            columns: [{
-                    data: 'kelas',
-                    name: 'kelas'
-                },
-                {
-                    data: 'created_at',
-                    name: 'created_at'
-                },
-                {
-                    data: 'nama_sekolah',
-                    name: 'nama_sekolah'
-                },
+        //     columns: [{
+        //             data: 'kelas',
+        //             name: 'kelas'
+        //         },
+        //         {
+        //             data: 'created_at',
+        //             name: 'created_at'
+        //         },
+        //         {
+        //             data: 'nama_sekolah',
+        //             name: 'nama_sekolah'
+        //         },
 
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searcable: false,
-                    width: '15%'
-                },
-            ],
-        });
-    </script> --}}
+        //         {
+        //             data: 'action',
+        //             name: 'action',
+        //             orderable: false,
+        //             searcable: false,
+        //             width: '15%'
+        //         },
+        //     ],
+        // });
+    </script>
 @endpush
 {{-- 3.500.000.000 --}}

@@ -301,6 +301,271 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="EditFisikBerat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit Aktifitas Fisik Berat</h4>
+                    <button type="button" class="btn btn-close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Lengkapi data di bawah ini.
+                    </p>
+                    <form action="{{ route('met-berat') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="id" value="{{ $tes->id }}" name="id">
+                        <div class="mb-3 mb-4">
+                            <label for="exampleInputtext1" class="form-label">Apakah dalam satu minggu Anda sering
+                                melakukan
+                                aktivitas fisik berat? <span class="text-muted">(Jenis aktivitas fisik berat seperti:
+                                    bersepeda jarak jauh, sepak bola, futsal, basket, lari berkelanjutan lebih dari 20
+                                    menit, renang, dan cabang olahraga bela diri)</span></label>
+                            <div class="row m-2">
+                                <div class="form-check col-md-6">
+                                    <input class="form-check-input" type="radio" value="ya" name="metberat"
+                                        onclick="showRookport()" id="metberat1">
+                                    <label class="form-check-label" for="metberat1">
+                                        Ya
+                                    </label>
+                                </div>
+                                <div class="form-check col-md-6">
+                                    <input class="form-check-input" type="radio" value="tidak" name="metberat"
+                                        onclick="hiddenRookport()" id="metberat2">
+                                    <label class="form-check-label" for="metberat2">
+                                        Tidak
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div id="rook1" class="mb-3 mb-4">
+                            <label for="exampleInputtext1" class="form-label">Berapa kali dalam satu minggu melakukan
+                                aktivitas fisik berat tersebut?</label>
+                            <div class="row ml-2">
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="1" name="repetisiberat"
+                                        id="repetisiberat1">
+                                    <label class="form-check-label" for="repetisiberat1">
+                                        1
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="2" name="repetisiberat"
+                                        id="repetisiberat2">
+                                    <label class="form-check-label" for="repetisiberat2">
+                                        2
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="3" name="repetisiberat"
+                                        id="repetisiberat2">
+                                    <label class="form-check-label" for="repetisiberat2">
+                                        3
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="4" name="repetisiberat"
+                                        id="repetisiberat2">
+                                    <label class="form-check-label" for="repetisiberat2">
+                                        4
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="5" name="repetisiberat"
+                                        id="repetisiberat2">
+                                    <label class="form-check-label" for="repetisiberat2">
+                                        5
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="6" name="repetisiberat"
+                                        id="repetisiberat2">
+                                    <label class="form-check-label" for="repetisiberat2">
+                                        6
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="7" name="repetisiberat"
+                                        id="fisikberat2">
+                                    <label class="form-check-label" for="fisikberat2">
+                                        7
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div id="rook2" class="mb-3">
+                            <label for="exampleInputtext1" class="form-label">Berapa menit rata-rata Anda melakukan
+                                aktivitas fisik berat tersebut dalam satu hari?
+                            </label>
+                            <input id="lama" type="number" class="form-control" name="lama" required>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="EditFisikSedang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit Aktifitas Fisik Sedang</h4>
+                    <button type="button" class="btn btn-close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Lengkapi data di bawah ini.
+                    </p>
+                    <form action="{{ route('met-sedang') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="id" value="{{ $tes->id }}" name="id">
+
+                        <div class="mb-3 mb-4">
+                            <label for="exampleInputtext1" class="form-label">Apakah dalam satu minggu Anda sering
+                                melakukan
+                                aktivitas fisik sedang? <span class="text-muted">(Jenis aktivitas fisik berat seperti:
+                                    bersepeda jarak jauh, sepak bola, futsal, basket, lari berkelanjutan lebih dari 20
+                                    menit, renang, dan cabang olahraga bela diri)</span></label>
+                            <div class="row m-2">
+                                <div class="form-check col-md-6">
+                                    <input class="form-check-input" type="radio" value="ya" name="metsedang"
+                                        onclick="showRookport2()" id="metsedang1">
+                                    <label class="form-check-label" for="metsedang1">
+                                        Ya
+                                    </label>
+                                </div>
+                                <div class="form-check col-md-6">
+                                    <input class="form-check-input" type="radio" value="tidak" name="metsedang"
+                                        onclick="hiddenRookport2()" id="metsedang2">
+                                    <label class="form-check-label" for="metsedang2">
+                                        Tidak
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div id="rook11" class="mb-3 mb-4" id="">
+                            <label for="exampleInputtext1" class="form-label">Berapa kali dalam satu minggu melakukan
+                                aktivitas fisik sedang tersebut?</label>
+                            <div class="row ml-2">
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="1" name="repetisiberat"
+                                        id="repetisi1">
+                                    <label class="form-check-label" for="repetisi1">
+                                        1
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="2" name="repetisi"
+                                        id="repetisi2">
+                                    <label class="form-check-label" for="repetisi2">
+                                        2
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="3" name="repetisi"
+                                        id="repetisi2">
+                                    <label class="form-check-label" for="repetisi2">
+                                        3
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="4" name="repetisi"
+                                        id="repetisi2">
+                                    <label class="form-check-label" for="repetisi2">
+                                        4
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="5" name="repetisi"
+                                        id="repetisi2">
+                                    <label class="form-check-label" for="repetisi2">
+                                        5
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="6" name="repetisi"
+                                        id="repetisi2">
+                                    <label class="form-check-label" for="repetisi2">
+                                        6
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" value="rookport" name="fisikberat"
+                                        id="fisikberat2">
+                                    <label class="form-check-label" for="fisikberat2">
+                                        7
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div id="rook22" class="mb-3">
+                            <label for="exampleInputtext1" class="form-label">Berapa menit rata-rata Anda melakukan
+                                aktivitas fisik sedang tersebut dalam satu hari?
+                            </label>
+                            <input id="lama" type="number" class="form-control" name="lama" required>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="EditFisikRingan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Edit Aktifitas Fisik Ringan</h4>
+                    <button type="button" class="btn btn-close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Lengkapi data di bawah ini.
+                    </p>
+                    <form action="{{ route('met-ringan') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="id" value="{{ $tes->id }}" name="id">
+                        <div class="mb-3">
+                            <label for="exampleInputtext1" class="form-label">Dalam satu hari, berapa menit rata-rata Anda
+                                berjalan kaki?
+                            </label>
+                            <input id="lama" type="number" class="form-control" name="lama" required>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <div id="content" class="flex ">
         @include('alert.success')
@@ -371,7 +636,8 @@
                                                                         <td></td>
                                                                         <td> <a href=""
                                                                                 class="btn btn-success mr-2 mb-2"
-                                                                                data-toggle="modal" data-target="#">Edit
+                                                                                data-toggle="modal"
+                                                                                data-target="#EditFisikBerat">Edit
                                                                                 Aktivitas Fisik
                                                                                 Berat</a></td>
                                                                     </tr>
@@ -403,7 +669,8 @@
                                                                         <td></td>
                                                                         <td> <a href=""
                                                                                 class="btn btn-success mr-2 mb-2"
-                                                                                data-toggle="modal" data-target="#">Edit
+                                                                                data-toggle="modal"
+                                                                                data-target="#EditFisikSedang">Edit
                                                                                 Aktivitas Fisik
                                                                                 Sedang</a></td>
                                                                     </tr>
@@ -432,7 +699,8 @@
                                                                         <td></td>
                                                                         <td> <a href=""
                                                                                 class="btn btn-success mr-2 mb-2"
-                                                                                data-toggle="modal" data-target="#">Edit
+                                                                                data-toggle="modal"
+                                                                                data-target="#EditFisikRingan">Edit
                                                                                 Aktivitas Fisik
                                                                                 ringan</a></td>
                                                                     </tr>

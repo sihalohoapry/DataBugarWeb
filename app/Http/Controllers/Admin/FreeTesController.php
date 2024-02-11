@@ -35,6 +35,8 @@ class FreeTesController extends Controller
             }
         }
         $resutKebugaran = ResutKebugaran::where('jenis_klamin', '=', $request->jenis_klamin)->where('start_value', '<', $inputResultKebugaran)->where('end_value', '>', $inputResultKebugaran)->first();
+
+
         return view('pages.freetes', [
             'resultIMT' => $resultIMT,
             'inputResult' => $inputResult,

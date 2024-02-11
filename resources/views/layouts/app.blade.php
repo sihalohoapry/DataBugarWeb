@@ -32,8 +32,8 @@
                     <img height="40px" src="{{ asset('logo-databugar.png') }}" alt="..."> <span
                         style=
                                                  "font-family: Georgia, 'Times New Roman', Times, serif;
-                                                 ">DATA
-                        BUGAR</span>
+                                                 ">Data
+                        Bugar <sup>+</sup></span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

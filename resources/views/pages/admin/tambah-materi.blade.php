@@ -47,6 +47,8 @@
                                                     <option value="SQUAT JUMP">SQUAT JUMP</option>
                                                     <option value="PULL UP">PULL UP</option>
                                                     <option value="ROCKPORT TEST">ROCKPORT TEST</option>
+                                                    <option value="PULL UP WANITA">PULL UP WANITA</option>
+
 
                                                 </select>
                                             </div>
