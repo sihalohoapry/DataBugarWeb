@@ -87,7 +87,15 @@
                                 @if (Carbon\Carbon::parse($item->start_tes) < now() && Carbon\Carbon::parse($item->end_tes) > now())
                                     <div class="mb-2">
                                         <button class="accordion" style="color: green">Tes No.
-                                            {{ $item->nomer_tes }}</button>
+                                            {{ $item->nomer_tes }}
+                                            @if (
+                                                ($item->result_imt != null && $item->siswa_id == Auth::user()->id) ||
+                                                    ($item->result_kebugaran != null && $item->siswa_id == Auth::user()->id))
+                                                <span style="float: right; color:green">
+                                                    &#10004;
+                                                    DONE</span>
+                                            @endif
+                                        </button>
                                         <div class="panel">
 
                                             <table class="table">
@@ -104,9 +112,15 @@
                                                 </tbody>
                                             </table>
 
-                                            <a href="{{ route('mulai-test', $item->id) }}"
-                                                class="btn btn-primary mb-2">Mulai
-                                                Tes</a>
+                                            <a href="{{ route('mulai-test', $item->id) }}" class="btn btn-primary mb-2">
+                                                @if (
+                                                    ($item->result_imt != null && $item->siswa_id == Auth::user()->id) ||
+                                                        ($item->result_kebugaran != null && $item->siswa_id == Auth::user()->id))
+                                                    Lihat Tes
+                                                @else
+                                                    Mulai Tes
+                                                @endif
+                                            </a>
                                         </div>
                                     </div>
                                 @else

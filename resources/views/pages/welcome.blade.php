@@ -56,7 +56,7 @@
                             <div class="form-group col-md-6">
                                 <label class="text-muted">Umur</label>
                                 <input type="number" id="umur" name="umur" class="form-control" required
-                                    min="16" max="19" placeholder="16 tahun - 19 tahun">
+                                    placeholder="tahun">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="text-muted">Jenis Klamin</label>
