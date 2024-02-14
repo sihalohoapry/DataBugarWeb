@@ -61,18 +61,41 @@ Route::post('/delete-jadwal', [App\Http\Controllers\Guru\JadwalTesController::cl
 //siswa
 Route::get('/jadwal-tes-siswa', [App\Http\Controllers\Siswa\SiswaController::class, 'indexJadwal'])->name('jadwal-tes-siswa')->middleware(['auth']);
 Route::get('/jadwal-tes-siswa/mulai-test/{id}', [App\Http\Controllers\Siswa\SiswaController::class, 'mulaiTest'])->name('mulai-test')->middleware(['auth']);
+Route::get('/jadwal-tes-siswa/detail-result-tes/{id}', [App\Http\Controllers\Siswa\SiswaController::class, 'detailResultTest'])->name('detail-result-tes')->middleware(['auth']);
+
 Route::post('/met-berat', [App\Http\Controllers\Siswa\SiswaController::class, 'metBerat'])->name('met-berat')->middleware(['auth']);
 Route::post('/met-berat-edit', [App\Http\Controllers\Siswa\SiswaController::class, 'metBeratEdit'])->name('met-berat-edit')->middleware(['auth']);
-
 Route::post('/met-sedang', [App\Http\Controllers\Siswa\SiswaController::class, 'metSedang'])->name('met-sedang')->middleware(['auth']);
 Route::post('/met-sedang-edit', [App\Http\Controllers\Siswa\SiswaController::class, 'metSedangEdit'])->name('met-sedang-edit')->middleware(['auth']);
-
-
 Route::post('/met-ringan', [App\Http\Controllers\Siswa\SiswaController::class, 'metRingan'])->name('met-ringan')->middleware(['auth']);
 Route::post('/met-ringan-edit', [App\Http\Controllers\Siswa\SiswaController::class, 'metRinganEdit'])->name('met-ringan-edit')->middleware(['auth']);
-
 Route::post('/submit-tes', [App\Http\Controllers\Siswa\SiswaController::class, 'submitTesIMTKebugaran'])->name('submit-tes');
 
+
+Route::get('/tes-mandiri-siswa', [App\Http\Controllers\Siswa\SiswaController::class, 'indexMandiri'])->name('tes-mandiri-siswa')->middleware(['auth']);
+Route::get('/tes-mandiri-siswa/form-tes-mandiri', [App\Http\Controllers\Siswa\SiswaController::class, 'formTesMandiri'])->name('form-tes-mandiri')->middleware(['auth']);
+Route::post('/submit-tes-mandiri', [App\Http\Controllers\Siswa\SiswaController::class, 'submitTesIMTKebugaranMandiri'])->name('submit-tes-mandiri');
+
+Route::get('/raport-ku', [App\Http\Controllers\Siswa\SiswaController::class, 'raportKu'])->name('raport-ku')->middleware(['auth']);
+Route::get('/riwayat-kesehatan', [App\Http\Controllers\Siswa\SiswaController::class, 'riwayatKesehatan'])->name('riwayat-kesehatan')->middleware(['auth']);
+Route::post('/submit-riwayat-dokter', [App\Http\Controllers\Siswa\SiswaController::class, 'submitRiwayatDokter'])->name('submit-riwayat-dokter');
+Route::post('/edit-riwayat-dokter', [App\Http\Controllers\Siswa\SiswaController::class, 'editRiwayatDokter'])->name('edit-riwayat-dokter');
+
+Route::post('/submit-sejarah-keluarga', [App\Http\Controllers\Siswa\SiswaController::class, 'submitSejarahKeluarga'])->name('submit-sejarah-keluarga');
+Route::post('/edit-sejarah-keluarga', [App\Http\Controllers\Siswa\SiswaController::class, 'editSejarahKeluarga'])->name('edit-sejarah-keluarga');
+
+Route::post('/submit-kondisi-sekarang', [App\Http\Controllers\Siswa\SiswaController::class, 'submitKondisiSekarang'])->name('submit-kondisi-sekarang');
+Route::post('/edit-kondisi-sekarang', [App\Http\Controllers\Siswa\SiswaController::class, 'editKondisiSekarang'])->name('edit-kondisi-sekarang');
+
+
+Route::post('/submit-permasalahan-medis', [App\Http\Controllers\Siswa\SiswaController::class, 'submitPermasalahanMedis'])->name('submit-permasalahan-medis');
+Route::post('/edit-permasalahan-medis', [App\Http\Controllers\Siswa\SiswaController::class, 'editPermasalahanMedis'])->name('edit-permasalahan-medis');
+
+Route::post('/submit-konsumsi-obat', [App\Http\Controllers\Siswa\SiswaController::class, 'submitKonsumsiObat'])->name('submit-konsumsi-obat');
+Route::post('/edit-konsumsi-obat', [App\Http\Controllers\Siswa\SiswaController::class, 'editKonsumsiObat'])->name('edit-konsumsi-obat');
+
+Route::post('/submit-pola-tidur', [App\Http\Controllers\Siswa\SiswaController::class, 'submitPolaTidur'])->name('submit-pola-tidur');
+Route::post('/edit-pola-tidur', [App\Http\Controllers\Siswa\SiswaController::class, 'editPolaTidur'])->name('edit-pola-tidur');
 
 
 Route::get('/result-imt', [App\Http\Controllers\Admin\ResultController::class, 'index'])->name('result-imt')->middleware(['auth']);

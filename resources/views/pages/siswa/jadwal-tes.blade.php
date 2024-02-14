@@ -126,7 +126,14 @@
                                 @else
                                     <div class="mb-2">
                                         <button class="accordion"style="color: red">Tes
-                                            No. {{ $item->nomer_tes }}</button>
+                                            No. {{ $item->nomer_tes }} @if (
+                                                ($item->result_imt != null && $item->siswa_id == Auth::user()->id) ||
+                                                    ($item->result_kebugaran != null && $item->siswa_id == Auth::user()->id))
+                                                <span style="float: right; color:green">
+                                                    &#10004;
+                                                    DONE</span>
+                                            @endif
+                                        </button>
                                         <div class="panel">
                                             <p>Jadwal tes sudah terlewatkan</p>
                                             <table class="table">
@@ -143,7 +150,8 @@
                                                 </tbody>
                                             </table>
                                             @if ($item)
-                                                <a href="" class="btn btn-success mb-2">Detail</a>
+                                                <a href="{{ route('detail-result-tes', $item->tes_id) }}"
+                                                    class="btn btn-success mb-2">Detail</a>
                                             @endif
                                         </div>
 

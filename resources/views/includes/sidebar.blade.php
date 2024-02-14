@@ -138,18 +138,28 @@
 
                                 </li>
                                 <li>
-                                    <a href="{{ route('siswa') }}" class="">
+                                    <a href="{{ route('tes-mandiri-siswa') }}" class="">
                                         <span class="nav-icon"><i data-feather='list'></i></span>
-                                        <span class="nav-text {{ request()->is('siswa*') ? 'text-primary' : '' }}">Test
+                                        <span
+                                            class="nav-text {{ request()->is('tes-mandiri-siswa*') ? 'text-primary' : '' }}">Test
                                             Mandiri</span>
                                     </a>
 
                                 </li>
                                 <li>
-                                    <a href="{{ route('jadwal-tes') }}" class="">
+                                    <a href="{{ route('riwayat-kesehatan') }}" class="">
                                         <span class="nav-icon"><i data-feather='list'></i></span>
                                         <span
-                                            class="nav-text {{ request()->is('') ? 'text-primary' : '' }}">Raport</span>
+                                            class="nav-text {{ request()->is('riwayat-kesehatan*') ? 'text-primary' : '' }}">Riwayat
+                                            Kesehatan</span>
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="{{ route('raport-ku') }}" class="">
+                                        <span class="nav-icon"><i data-feather='list'></i></span>
+                                        <span
+                                            class="nav-text {{ request()->is('raport-ku*') ? 'text-primary' : '' }}">Raport</span>
                                     </a>
 
                                 </li>
