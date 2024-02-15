@@ -48,13 +48,18 @@ Route::post('/siswa/upload-siswa', [App\Http\Controllers\Guru\SiswaController::c
 Route::post('/delete-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'deleteSiswa'])->name('delete-siswa')->middleware(['auth']);
 Route::post('/update-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'updateSiswa'])->name('update-siswa')->middleware(['auth']);
 Route::get('/siswa/detail-siswa/{id}', [App\Http\Controllers\Guru\SiswaController::class, 'detailSiswa'])->name('detail-siswa')->middleware(['auth']);
-Route::get('/sistem/download', [SiswaController::class, 'downloadTemplate'])->name('download')->middleware(['auth']);
+Route::get('/sistem/download', [App\Http\Controllers\Guru\SiswaController::class, 'downloadTemplate'])->name('download')->middleware(['auth']);
+
 
 
 Route::get('/jadwal-tes', [App\Http\Controllers\Guru\JadwalTesController::class, 'index'])->name('jadwal-tes')->middleware(['auth']);
-Route::post('/update-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'updateJadwal'])->name('update-jadwal')->middleware(['auth']);
+Route::get('/jadwal-tes/detail-tes/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'detailTes'])->name('detail-tes')->middleware(['auth']);
+Route::post('/update-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'detailTes'])->name('update-jadwal')->middleware(['auth']);
 Route::post('/jadwal-tes/tambah-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'createJadwal'])->name('tambah-jadwal')->middleware(['auth']);
 Route::post('/delete-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'deleteJadwal'])->name('delete-jadwal')->middleware(['auth']);
+Route::post('/report-tes/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'export'])->name('report-tes')->middleware(['auth']);
+Route::post('/report-tes-met/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'exportMET'])->name('report-tes-met')->middleware(['auth']);
+
 
 
 

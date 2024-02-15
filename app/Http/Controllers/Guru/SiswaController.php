@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Imports\SiswaImport;
+use App\Models\JadwalTest;
 use App\Models\Kelas;
 use App\Models\Sekolah;
 use App\Models\User;
@@ -117,8 +118,13 @@ class SiswaController extends Controller
 
         $kelas = Kelas::where('user_id', '=', Auth::user()->id)->get();
 
+        $datas = JadwalTest::join('tes_imt_kebugarans', 'jadwal_tests.id', '=', 'tes_imt_kebugarans.tes_id')
+            ->join('tes_m_e_t_s', 'jadwal_tests.id', 'tes_m_e_t_s.tes_id')
+            ->where('tes_imt_kebugarans.siswa_id', '=', $id)
+            ->where('tes_m_e_t_s.siswa_id', '=', $id)
+            ->get();
 
-        return view('pages.guru.detail-siswa', ['data' => $query, 'kelas' => $kelas]);
+        return view('pages.guru.detail-siswa', ['data' => $query, 'kelas' => $kelas, 'datas' => $datas]);
     }
 
 

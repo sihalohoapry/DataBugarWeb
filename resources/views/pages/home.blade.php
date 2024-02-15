@@ -157,7 +157,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md-4 d-flex">
+                            {{-- <div class="col-md-4 d-flex">
                                 <div class="card flex">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center text-hover-success">
@@ -173,7 +173,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     @endif
@@ -218,19 +218,21 @@
                             </div>
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center text-hover-success">
-                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                <i data-feather="monitor"></i>
-                                            </div>
-                                            <div class="px-4 flex">
-                                                <div>Raport</div>
-                                                <div class="text-success mt-2">
+                                    <a href="{{ route('raport-ku') }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                    <i data-feather="monitor"></i>
                                                 </div>
-                                            </div>
+                                                <div class="px-4 flex">
+                                                    <div>Raport</div>
+                                                    <div class="text-success mt-2">
+                                                    </div>
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
 

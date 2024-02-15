@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Guru;
 
+use App\Exports\TesExport;
+use App\Exports\TesMETExport;
 use App\Http\Controllers\Controller;
 use App\Models\JadwalTest;
 use App\Models\Kelas;
+use App\Models\TesImtKebugaran;
+use App\Models\TesMET;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JadwalTesController extends Controller
 {
@@ -124,5 +129,44 @@ class JadwalTesController extends Controller
         } catch (\Throwable $e) {
             return redirect()->route('jadwal-tes')->with('fail', 'Gagal mengubah data' . $e);
         }
+    }
+
+
+    public function detailTes($id)
+    {
+        $tes = JadwalTest::findOrFail($id);
+
+        $tesMET = TesMET::join('users', 'tes_m_e_t_s.siswa_id', '=', 'users.id')
+            ->where('tes_id', '=', $id)->get();
+
+        $tesIMTKebugaran = TesImtKebugaran::join('users', 'tes_imt_kebugarans.siswa_id', '=', 'users.id')->where('tes_id', '=', $id)->get();
+
+        return view(
+            'pages.guru.detail-tes',
+            [
+                'jadwal_tes' => $tes,
+                'tesMET' => $tesMET,
+                'tesIMTKebugaran' => $tesIMTKebugaran,
+
+
+            ]
+        );
+    }
+
+    public function export($id)
+    {
+        $data = JadwalTest::findOrFail($id);
+        $kelas = Kelas::findOrFail($data->class_id);
+        return Excel::download(
+            new TesExport($id),
+            $data->nomer_tes . '_' . 'HASIL_IMT_KEBUGARAN_' . $kelas->kelas . '.xlsx'
+        );
+    }
+
+    public function exportMET($id)
+    {
+        $data = JadwalTest::findOrFail($id);
+        $kelas = Kelas::findOrFail($data->class_id);
+        return Excel::download(new TesMETExport($id), $data->nomer_tes . '_' . 'HASIL_MET_' . $kelas->kelas . '.xlsx');
     }
 }

@@ -262,6 +262,9 @@
                                         onclick="setEdit('{{ $item->id }}','{{ $item->kelas }}','{{ $item->class_id }}','{{ $item->start_tes }}','{{ $item->end_tes }}','{{ $item->sekolah_id }}')">
                                         Edit
                                     </a>
+                                    <a class="btn btn-success text-white" href="{{ route('detail-tes', $item->id) }}">
+                                        Detail
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
