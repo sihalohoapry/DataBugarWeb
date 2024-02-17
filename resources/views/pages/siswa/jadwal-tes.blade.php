@@ -150,7 +150,7 @@
                                                 </tbody>
                                             </table>
                                             @if ($item)
-                                                <a href="{{ route('detail-result-tes', $item->tes_id) }}"
+                                                <a href="{{ route('detail-result-tes', $item->id) }}"
                                                     class="btn btn-success mb-2">Detail</a>
                                             @endif
                                         </div>

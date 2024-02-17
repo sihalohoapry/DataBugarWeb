@@ -94,7 +94,7 @@ class SiswaController extends Controller
         try {
             Excel::import(new SiswaImport($request->kelas), $request->file_upload);
             return redirect()->route('siswa')->with('status', 'Berhasil menambah data');
-        } catch (\Throwable $th) {
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $th) {
             return redirect()->route('tambah-siswa')->with('fail', 'Gagal menambah data' . $th);
         }
     }

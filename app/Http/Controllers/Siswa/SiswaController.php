@@ -28,10 +28,9 @@ class SiswaController extends Controller
     public function indexJadwal()
     {
 
-        $datas = JadwalTest::join('tes_imt_kebugarans', 'jadwal_tests.id', '=', 'tes_imt_kebugarans.tes_id')
-            ->join('tes_m_e_t_s', 'jadwal_tests.id', 'tes_m_e_t_s.tes_id')
-            ->where('sekolah_id', '=', Auth::user()->sekolah_id)
-            ->where('class_id', '=', Auth::user()->class)->get();
+        $datas = JadwalTest::where('sekolah_id', '=', Auth::user()->sekolah_id)
+            ->where('class_id', '=', Auth::user()->class)
+            ->get();
 
         return view('pages.siswa.jadwal-tes', ['datas' => $datas]);
     }
