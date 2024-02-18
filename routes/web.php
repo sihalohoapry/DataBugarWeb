@@ -32,33 +32,45 @@ Route::get('/dashboard', [App\Http\Controllers\Controller::class, 'home'])->name
 
 Route::post('/submit-freetes', [App\Http\Controllers\Admin\FreeTesController::class, 'submitFreetes'])->name('submit-freetes');
 
-Route::get('/guru', [App\Http\Controllers\Admin\GuruController::class, 'index'])->name('guru')->middleware(['auth']);
-Route::get('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::class, 'add'])->name('tambah-guru')->middleware(['auth']);
-Route::post('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::class, 'create'])->name('create-guru')->middleware(['auth']);
-Route::get('/edit-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'editGuru'])->name('edit-guru')->middleware(['auth']);
-Route::post('/delete-guru', [App\Http\Controllers\Admin\GuruController::class, 'deleteGuru'])->name('delete-guru')->middleware(['auth']);
-Route::put('/guru/update-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'updateGuru'])->name('update-guru')->middleware(['auth']);
+//ADMIN
+Route::get('/guru', [App\Http\Controllers\Admin\GuruController::class, 'index'])->name('guru')->middleware(['auth', 'admin']);
+Route::get('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::class, 'add'])->name('tambah-guru')->middleware(['auth', 'admin']);
+Route::post('/guru/tambah-guru', [App\Http\Controllers\Admin\GuruController::class, 'create'])->name('create-guru')->middleware(['auth', 'admin']);
+Route::get('/edit-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'editGuru'])->name('edit-guru')->middleware(['auth', 'admin']);
+Route::post('/delete-guru', [App\Http\Controllers\Admin\GuruController::class, 'deleteGuru'])->name('delete-guru')->middleware(['auth', 'admin']);
+Route::put('/guru/update-guru/{id}', [App\Http\Controllers\Admin\GuruController::class, 'updateGuru'])->name('update-guru')->middleware(['auth', 'admin']);
+Route::get('/sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'index'])->name('sekolah')->middleware(['auth', 'admin']);
+Route::get('/sekolah/tambah-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'add'])->name('tambah-sekolah')->middleware(['auth', 'admin']);
+Route::post('/sekolah/tambah-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'create'])->name('create-sekolah')->middleware(['auth', 'admin']);
+Route::post('/sekolah/delete-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'delete'])->name('delete-sekolah')->middleware(['auth', 'admin']);
+Route::post('/sekolah/update-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'updatesekolah'])->name('update-sekolah')->middleware(['auth', 'admin']);
 
 
 //guru
-Route::get('/siswa', [App\Http\Controllers\Guru\SiswaController::class, 'index'])->name('siswa')->middleware(['auth']);
-Route::get('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'add'])->name('tambah-siswa')->middleware(['auth']);
-Route::post('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'createSiswa'])->name('create-siswa')->middleware(['auth']);
-Route::post('/siswa/upload-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'uploadSiswa'])->name('upload-siswa')->middleware(['auth']);
-Route::post('/delete-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'deleteSiswa'])->name('delete-siswa')->middleware(['auth']);
-Route::post('/update-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'updateSiswa'])->name('update-siswa')->middleware(['auth']);
-Route::get('/siswa/detail-siswa/{id}', [App\Http\Controllers\Guru\SiswaController::class, 'detailSiswa'])->name('detail-siswa')->middleware(['auth']);
-Route::get('/sistem/download', [App\Http\Controllers\Guru\SiswaController::class, 'downloadTemplate'])->name('download')->middleware(['auth']);
+Route::get('/siswa', [App\Http\Controllers\Guru\SiswaController::class, 'index'])->name('siswa')->middleware(['auth', 'guru']);
+Route::get('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'add'])->name('tambah-siswa')->middleware(['auth', 'guru']);
+Route::post('/siswa/tambah-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'createSiswa'])->name('create-siswa')->middleware(['auth', 'guru']);
+Route::post('/siswa/upload-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'uploadSiswa'])->name('upload-siswa')->middleware(['auth', 'guru']);
+Route::post('/delete-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'deleteSiswa'])->name('delete-siswa')->middleware(['auth', 'guru']);
+Route::post('/update-siswa', [App\Http\Controllers\Guru\SiswaController::class, 'updateSiswa'])->name('update-siswa')->middleware(['auth', 'guru']);
+Route::get('/siswa/detail-siswa/{id}', [App\Http\Controllers\Guru\SiswaController::class, 'detailSiswa'])->name('detail-siswa')->middleware(['auth', 'guru']);
+Route::get('/sistem/download', [App\Http\Controllers\Guru\SiswaController::class, 'downloadTemplate'])->name('download')->middleware(['auth', 'guru']);
 
 
 
-Route::get('/jadwal-tes', [App\Http\Controllers\Guru\JadwalTesController::class, 'index'])->name('jadwal-tes')->middleware(['auth']);
-Route::get('/jadwal-tes/detail-tes/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'detailTes'])->name('detail-tes')->middleware(['auth']);
+Route::get('/jadwal-tes', [App\Http\Controllers\Guru\JadwalTesController::class, 'index'])->name('jadwal-tes')->middleware(['auth', 'guru']);
+Route::get('/jadwal-tes/detail-tes/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'detailTes'])->name('detail-tes')->middleware(['auth', 'guru']);
 Route::post('/update-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'detailTes'])->name('update-jadwal')->middleware(['auth']);
-Route::post('/jadwal-tes/tambah-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'createJadwal'])->name('tambah-jadwal')->middleware(['auth']);
-Route::post('/delete-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'deleteJadwal'])->name('delete-jadwal')->middleware(['auth']);
-Route::post('/report-tes/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'export'])->name('report-tes')->middleware(['auth']);
-Route::post('/report-tes-met/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'exportMET'])->name('report-tes-met')->middleware(['auth']);
+Route::post('/jadwal-tes/tambah-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'createJadwal'])->name('tambah-jadwal')->middleware(['auth', 'guru']);
+Route::post('/delete-jadwal', [App\Http\Controllers\Guru\JadwalTesController::class, 'deleteJadwal'])->name('delete-jadwal')->middleware(['auth', 'guru']);
+Route::post('/report-tes/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'export'])->name('report-tes')->middleware(['auth', 'guru']);
+Route::post('/report-tes-met/{id}', [App\Http\Controllers\Guru\JadwalTesController::class, 'exportMET'])->name('report-tes-met')->middleware(['auth', 'guru']);
+
+Route::get('/kelas', [App\Http\Controllers\Admin\KelasController::class, 'index'])->name('kelas')->middleware(['auth', 'guru']);
+Route::get('/kelas/tambah-kelas', [App\Http\Controllers\Admin\KelasController::class, 'add'])->name('tambah-kelas')->middleware(['auth', 'guru']);
+Route::post('/kelas/tambah-kelas', [App\Http\Controllers\Admin\KelasController::class, 'create'])->name('create')->middleware(['auth', 'guru']);
+Route::post('/kelas/delete-kelas', [App\Http\Controllers\Admin\KelasController::class, 'delete'])->name('delete-kelas')->middleware(['auth', 'guru']);
+Route::post('/kelas/update-kelas', [App\Http\Controllers\Admin\KelasController::class, 'updateKelas'])->name('update-kelas')->middleware(['auth', 'guru']);
 
 
 
@@ -124,15 +136,3 @@ Route::post('/materi/tambah-materi', [App\Http\Controllers\Admin\MateriControlle
 Route::get('materi/edit/{id}', [App\Http\Controllers\Admin\MateriController::class, 'editmateri'])->name('edit-materi')->middleware(['auth']);
 Route::post('/delete-materi', [App\Http\Controllers\Admin\MateriController::class, 'deletemateri'])->name('delete-materi')->middleware(['auth']);
 Route::put('/materi/update-materi/{id}', [App\Http\Controllers\Admin\MateriController::class, 'updatemateri'])->name('update-materi')->middleware(['auth']);
-
-Route::get('/kelas', [App\Http\Controllers\Admin\KelasController::class, 'index'])->name('kelas')->middleware(['auth']);
-Route::get('/kelas/tambah-kelas', [App\Http\Controllers\Admin\KelasController::class, 'add'])->name('tambah-kelas')->middleware(['auth']);
-Route::post('/kelas/tambah-kelas', [App\Http\Controllers\Admin\KelasController::class, 'create'])->name('create')->middleware(['auth']);
-Route::post('/kelas/delete-kelas', [App\Http\Controllers\Admin\KelasController::class, 'delete'])->name('delete-kelas')->middleware(['auth']);
-Route::post('/kelas/update-kelas', [App\Http\Controllers\Admin\KelasController::class, 'updateKelas'])->name('update-kelas')->middleware(['auth']);
-
-Route::get('/sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'index'])->name('sekolah')->middleware(['auth']);
-Route::get('/sekolah/tambah-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'add'])->name('tambah-sekolah')->middleware(['auth']);
-Route::post('/sekolah/tambah-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'create'])->name('create-sekolah')->middleware(['auth']);
-Route::post('/sekolah/delete-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'delete'])->name('delete-sekolah')->middleware(['auth']);
-Route::post('/sekolah/update-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'updatesekolah'])->name('update-sekolah')->middleware(['auth']);

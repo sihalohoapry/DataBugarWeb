@@ -53,6 +53,19 @@
                                 </select>
 
                             </div>
+                            <div class="form-group">
+                                <label class="text-muted">Tahun Ajaran</label>
+                                <select class="form-control" name="tahun_ajaran" id="tahun_ajaran" required>
+                                    <option id="tahun_existing" value=""></option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2027/2028">2027/2028</option>
+                                    <option value="2028/2029">2028/2029</option>
+                                    <option value="2029/2030">2029/2030</option>
+                                </select>
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
@@ -127,14 +140,22 @@
                         @foreach ($datas as $item)
                             <div class="col-md-3 card mr-2 mt-2">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $item->kelas }}</h5>
+                                    <h5 class="card-title">{{ $item->kelas }} ({{ $item->tahun_ajaran }})</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $item->nama_sekolah }}</h6>
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete"
-                                        onclick="setParameter('{{ $item->id }}')">Delete</button>
-                                    <a class="btn btn-primary text-white" data-toggle="modal" data-target="#ModalEdit"
-                                        onclick = "setParameterEdit('{{ $item->id }}', '{{ $item->sekolah_id }}', ' {{ $item->nama_sekolah }}' , ' {{ $item->kelas }} ')">
-                                        Edit
-                                    </a>
+                                    @php
+                                        $new_array = explode('/', $item->tahun_ajaran);
+                                    @endphp
+                                    @if (now()->year <= $new_array[1] && now()->year >= $new_array[0])
+                                        <button class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete"
+                                            onclick="setParameter('{{ $item->id }}')">Delete</button>
+                                        <a class="btn btn-primary text-white" data-toggle="modal"
+                                            data-target="#ModalEdit"
+                                            onclick = "setParameterEdit('{{ $item->id }}', '{{ $item->sekolah_id }}', ' {{ $item->nama_sekolah }}' , ' {{ $item->kelas }} ', ' {{ $item->tahun_ajaran }} ')">
+                                            Edit
+                                        </a>
+                                    @else
+                                    @endif
+
                                 </div>
                             </div>
                         @endforeach
@@ -158,13 +179,15 @@
 
         }
 
-        function setParameterEdit(id, sekolah_id, nama_sekolah, kelas) {
+        function setParameterEdit(id, sekolah_id, nama_sekolah, kelas, tahun_ajaran) {
             console.log(id, sekolah_id, nama_sekolah, kelas);
 
             document.getElementById('id').value = id;
-            document.getElementById('sekolah_id_existing').value = sekolah_id;
-            document.getElementById('sekolah_id_existing').text = nama_sekolah;
+            document.getElementById('tahun_existing').value = tahun_ajaran;
+            document.getElementById('tahun_existing').text = tahun_ajaran;
             document.getElementById('kelas').value = kelas;
+            document.getElementById('kelas').text = kelas;
+
 
 
 

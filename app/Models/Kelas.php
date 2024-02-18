@@ -14,5 +14,6 @@ class Kelas extends Model
         'kelas',
         'sekolah_id',
         'user_id',
+        'tahun_ajaran',
     ];
 }

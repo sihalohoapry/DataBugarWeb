@@ -68,17 +68,19 @@
 
                                             <button class="accordion">Tes MET
                                             </button>
-                                            @if (count($tesMET) == 0)
-                                                <div class="col-md-12 card mr-2 mt-2 text-center">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Data Kosong</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Tidak ada siswa yang
-                                                            submit</h6>
-                                                    </div>
-                                                </div>
-                                            @endif
+
                                             <div class="panel">
                                                 <div class="mt-2">
+                                                    @if (count($tesMET) == 0)
+                                                        <div class="col-md-12 card mr-2 mt-2 text-center">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Data Kosong</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">Tidak ada siswa
+                                                                    yang
+                                                                    submit</h6>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                     <form action="{{ route('report-tes-met', $jadwal_tes->id) }}"
                                                         method="POST" enctype="multipart/form-data">
                                                         @csrf
@@ -109,17 +111,18 @@
                                         <div>
                                             <button class="accordion">Tes IMT, Kekuatan dan Kebugaran
                                             </button>
-                                            @if (count($tesIMTKebugaran) == 0)
-                                                <div class="col-md-12 card mr-2 mt-2 text-center">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Data Kosong</h5>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Tidak ada siswa yang
-                                                            submit</h6>
-                                                    </div>
-                                                </div>
-                                            @endif
                                             <div class="panel">
                                                 <div class="mt-2">
+                                                    @if (count($tesIMTKebugaran) == 0)
+                                                        <div class="col-md-12 card mr-2 mt-2 text-center">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">Data Kosong</h5>
+                                                                <h6 class="card-subtitle mb-2 text-muted">Tidak ada siswa
+                                                                    yang
+                                                                    submit</h6>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                     <form action="{{ route('report-tes', $jadwal_tes->id) }}" method="POST"
                                                         enctype="multipart/form-data">
                                                         @csrf

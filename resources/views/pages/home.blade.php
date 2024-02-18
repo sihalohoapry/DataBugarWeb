@@ -201,7 +201,7 @@
                             </div>
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <a href="">
+                                    <a href="{{ route('tes-mandiri-siswa') }}">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center text-hover-success">
                                                 <div class="avatar w-56 m-2 no-shadow gd-success">

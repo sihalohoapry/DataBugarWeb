@@ -43,7 +43,7 @@ class KelasController extends Controller
         // }
 
         $query = Kelas::join('sekolahs', 'kelas.sekolah_id', '=', 'sekolahs.id')
-            ->select('kelas.id', 'kelas.created_at', 'kelas.kelas', 'nama_sekolah', 'kelas.sekolah_id')
+            ->select('kelas.id', 'kelas.created_at', 'kelas.kelas', 'nama_sekolah', 'kelas.sekolah_id', 'kelas.tahun_ajaran')
             ->where('kelas.user_id', '=', Auth::user()->id)
             ->get();
 
@@ -65,7 +65,7 @@ class KelasController extends Controller
 
     public function create(Request $request)
     {
-        $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->get()->count();
+        $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->where('tahun_ajaran', '=', $request->tahun_ajaran)->get()->count();
         if ($cekData == 0) {
             $data = $request->all();
             $data['kelas'] = strtoupper($request->kelas);
@@ -90,11 +90,13 @@ class KelasController extends Controller
         $data = Kelas::findOrFail($request->id);
         $data['kelas'] = $request->kelas;
         $data['sekolah_id'] = $request->sekolah_id;
+        $data['tahun_ajaran'] = $request->tahun_ajaran;
 
-        $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->get()->count();
-        if ($cekData > 0) {
-            return redirect()->route('kelas')->with('fail', 'Gagal edit data kelas, data sudah ada');
-        }
+
+        // $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->get()->count();
+        // if ($cekData > 0) {
+        //     return redirect()->route('kelas')->with('fail', 'Gagal edit data kelas, data sudah ada');
+        // }
 
         $data->update();
         return redirect()->route('kelas')->with('status', 'Berhasil edit data kelas');
