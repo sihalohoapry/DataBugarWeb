@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use App\Models\Sekolah;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,29 +44,33 @@ class KelasController extends Controller
         // }
 
         $query = Kelas::join('sekolahs', 'kelas.sekolah_id', '=', 'sekolahs.id')
-            ->select('kelas.id', 'kelas.created_at', 'kelas.kelas', 'nama_sekolah', 'kelas.sekolah_id', 'kelas.tahun_ajaran')
+            ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
+            ->select('kelas.id', 'kelas.created_at', 'kelas.kelas', 'nama_sekolah', 'kelas.sekolah_id',  'tahun_ajaran', 'tahun_ajaran_id')
             ->where('kelas.user_id', '=', Auth::user()->id)
             ->get();
 
         $sekloah = Sekolah::findOrFail(Auth::user()->sekolah_id);
-
+        $dataTahun = TahunAjaran::all();
         return view("pages.admin.kelas", [
             'sekolah' => $sekloah,
-            'datas' => $query
+            'datas' => $query,
+            'dataTahun' => $dataTahun,
         ]);
     }
 
     public function add()
     {
         $sekloah = Sekolah::findOrFail(Auth::user()->sekolah_id);
+        $dataTahun = TahunAjaran::all();
         return view('pages.admin.tambah-kelas', [
             'sekolah' => $sekloah,
+            'dataTahun' => $dataTahun,
         ]);
     }
 
     public function create(Request $request)
     {
-        $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->where('tahun_ajaran', '=', $request->tahun_ajaran)->get()->count();
+        $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->get()->count();
         if ($cekData == 0) {
             $data = $request->all();
             $data['kelas'] = strtoupper($request->kelas);
@@ -90,7 +95,7 @@ class KelasController extends Controller
         $data = Kelas::findOrFail($request->id);
         $data['kelas'] = $request->kelas;
         $data['sekolah_id'] = $request->sekolah_id;
-        $data['tahun_ajaran'] = $request->tahun_ajaran;
+        $data['tahun_ajaran_id'] = $request->tahun_ajaran_id;
 
 
         // $cekData = Kelas::where('sekolah_id', '=', $request->sekolah_id)->where('kelas', '=', strtoupper($request->kelas))->get()->count();

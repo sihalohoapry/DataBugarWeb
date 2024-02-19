@@ -51,15 +51,13 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="text-muted">Tahun Ajaran</label>
-                                                <select class="form-control" name="tahun_ajaran" id="tahun_ajaran" required>
+                                                <select class="form-control" name="tahun_ajaran_id" id="tahun_ajaran_id"
+                                                    required>
                                                     <option value="">==silahkan pilih==</option>
-                                                    <option value="2022/2023">2022/2023</option>
-                                                    <option value="2023/2024">2023/2024</option>
-                                                    <option value="2024/2025">2024/2025</option>
-                                                    <option value="2025/2026">2025/2026</option>
-                                                    <option value="2027/2028">2027/2028</option>
-                                                    <option value="2028/2029">2028/2029</option>
-                                                    <option value="2029/2030">2029/2030</option>
+                                                    @foreach ($dataTahun as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->tahun_ajaran }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 

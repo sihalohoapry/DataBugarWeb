@@ -27,24 +27,28 @@ class SiswaController extends Controller
         if ($request->kelas) {
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'users.class', '=', 'kelas.id')
+                ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
                 ->where('kelas.id', '=', $request->kelas)
                 ->where('users.guru_id', '=', Auth::user()->id)
-                ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas')->get();
+                ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas', 'tahun_ajaran')->get();
         } elseif ($request->nama) {
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'users.class', '=', 'kelas.id')
+                ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
                 ->where('name', 'LIKE', '%' . $request->nama . '%')
                 ->where('users.guru_id', '=', Auth::user()->id)
-                ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas')->get();
+                ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas', 'tahun_ajaran')->get();
         } else {
             $query = User::join('sekolahs', 'users.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'users.class', '=', 'kelas.id')
+                ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
                 ->where('users.guru_id', '=', Auth::user()->id)
-                ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas')->get();
+                ->select('users.id', 'users.name', 'users.nisn', 'nama_sekolah', 'kelas.kelas', 'tahun_ajaran')->get();
         }
 
 
-        $kelas = Kelas::where('user_id', '=', Auth::user()->id)->get();
+        $kelas = Kelas::join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
+            ->where('user_id', '=', Auth::user()->id)->get();
 
 
 

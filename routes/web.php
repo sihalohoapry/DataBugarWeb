@@ -45,6 +45,11 @@ Route::post('/sekolah/tambah-sekolah', [App\Http\Controllers\Admin\SekolahContro
 Route::post('/sekolah/delete-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'delete'])->name('delete-sekolah')->middleware(['auth', 'admin']);
 Route::post('/sekolah/update-sekolah', [App\Http\Controllers\Admin\SekolahController::class, 'updatesekolah'])->name('update-sekolah')->middleware(['auth', 'admin']);
 
+Route::get('/tahun-ajaran', [App\Http\Controllers\Admin\SekolahController::class, 'indexTahun'])->name('tahun-ajaran')->middleware(['auth', 'admin']);
+Route::post('/tahun-ajaran/tambah-tahun-ajaran', [App\Http\Controllers\Admin\SekolahController::class, 'createTahun'])->name('create-tahun-ajaran')->middleware(['auth', 'admin']);
+Route::post('/tahun-ajaran/delete-tahun-ajaran', [App\Http\Controllers\Admin\SekolahController::class, 'deleteTahun'])->name('delete-tahun-ajaran')->middleware(['auth', 'admin']);
+Route::post('/tahun-ajaran/update-tahun-ajaran', [App\Http\Controllers\Admin\SekolahController::class, 'updateTahun'])->name('update-tahun-ajaran')->middleware(['auth', 'admin']);
+
 
 //guru
 Route::get('/siswa', [App\Http\Controllers\Guru\SiswaController::class, 'index'])->name('siswa')->middleware(['auth', 'guru']);

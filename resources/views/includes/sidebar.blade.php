@@ -68,6 +68,15 @@
 
                                 </li>
                                 <li>
+                                    <a href="{{ route('tahun-ajaran') }}" class="">
+                                        <span class="nav-icon"><i data-feather='list'></i></span>
+                                        <span
+                                            class="nav-text {{ request()->is('tahun-ajaran*') ? 'text-primary' : '' }}">Tahun
+                                            Ajaran</span>
+                                    </a>
+
+                                </li>
+                                <li>
                                     <a href="{{ route('materi') }}" class="">
                                         <span class="nav-icon"><i data-feather='list'></i></span>
                                         <span

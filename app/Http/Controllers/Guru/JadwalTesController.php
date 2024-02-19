@@ -23,6 +23,7 @@ class JadwalTesController extends Controller
         if ($request->kelas) {
             $query = JadwalTest::join('sekolahs', 'jadwal_tests.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'jadwal_tests.class_id', '=', 'kelas.id')
+                ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
                 ->join('users', 'jadwal_tests.created_by', '=', 'users.id')
                 ->where('kelas.id', '=', $request->kelas)
                 ->where('jadwal_tests.created_by', '=', Auth::user()->id)
@@ -36,12 +37,14 @@ class JadwalTesController extends Controller
                     'nama_sekolah',
                     'kelas',
                     'name',
+                    'tahun_ajaran'
                 )
                 ->get();
         } elseif ($request->nama) {
             $query = JadwalTest::join('sekolahs', 'jadwal_tests.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'jadwal_tests.class_id', '=', 'kelas.id')
                 ->join('users', 'jadwal_tests.created_by', '=', 'users.id')
+                ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
                 ->where('name', 'LIKE', '%' . $request->nama . '%')
                 ->where('jadwal_tests.created_by', '=', Auth::user()->id)
                 ->select(
@@ -54,6 +57,7 @@ class JadwalTesController extends Controller
                     'jadwal_tests.end_tes',
                     'nama_sekolah',
                     'kelas',
+                    'tahun_ajaran',
                     'name',
                 )
                 ->get();
@@ -61,6 +65,7 @@ class JadwalTesController extends Controller
             $query = JadwalTest::join('sekolahs', 'jadwal_tests.sekolah_id', '=', 'sekolahs.id')
                 ->join('kelas', 'jadwal_tests.class_id', '=', 'kelas.id')
                 ->join('users', 'jadwal_tests.created_by', '=', 'users.id')
+                ->join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')
                 ->where('jadwal_tests.created_by', '=', Auth::user()->id)
                 ->select(
                     'jadwal_tests.id',
@@ -72,10 +77,11 @@ class JadwalTesController extends Controller
                     'jadwal_tests.end_tes',
                     'nama_sekolah',
                     'kelas',
+                    'tahun_ajaran',
                     'name',
                 )->get();
         }
-        $kelas = Kelas::where('user_id', '=', Auth::user()->id)->get();
+        $kelas = Kelas::join('tahun_ajarans', 'kelas.tahun_ajaran_id', '=', 'tahun_ajarans.id')->where('user_id', '=', Auth::user()->id)->get();
 
         return view('pages.guru.index-jadwal', ['datas' => $query, 'kelas' => $kelas]);
     }

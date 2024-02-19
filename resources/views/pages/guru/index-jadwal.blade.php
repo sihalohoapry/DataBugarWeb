@@ -192,7 +192,9 @@
                                                     <option value="">Pilih Kelas</option>
 
                                                     @foreach ($kelas as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->kelas }}</option>
+                                                        <option value="{{ $item->id }}">{{ $item->kelas }}
+                                                            ({{ $item->tahun_ajaran }})
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -244,7 +246,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Kelas</td>
-                                                <td>{{ $item->kelas }}</td>
+                                                <td>{{ $item->kelas }} ({{ $item->tahun_ajaran }})</td>
                                             </tr>
                                             <tr>
                                                 <td>Mulai Tes</td>

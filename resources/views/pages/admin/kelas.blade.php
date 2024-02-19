@@ -55,15 +55,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="text-muted">Tahun Ajaran</label>
-                                <select class="form-control" name="tahun_ajaran" id="tahun_ajaran" required>
+                                <select class="form-control" name="tahun_ajaran_id" id="tahun_ajaran_id" required>
                                     <option id="tahun_existing" value=""></option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2027/2028">2027/2028</option>
-                                    <option value="2028/2029">2028/2029</option>
-                                    <option value="2029/2030">2029/2030</option>
+                                    @foreach ($dataTahun as $item)
+                                        <option value="{{ $item->id }}">{{ $item->tahun_ajaran }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="modal-footer">
@@ -150,7 +146,7 @@
                                             onclick="setParameter('{{ $item->id }}')">Delete</button>
                                         <a class="btn btn-primary text-white" data-toggle="modal"
                                             data-target="#ModalEdit"
-                                            onclick = "setParameterEdit('{{ $item->id }}', '{{ $item->sekolah_id }}', ' {{ $item->nama_sekolah }}' , ' {{ $item->kelas }} ', ' {{ $item->tahun_ajaran }} ')">
+                                            onclick = "setParameterEdit('{{ $item->id }}', '{{ $item->sekolah_id }}', ' {{ $item->nama_sekolah }}' , ' {{ $item->kelas }} ', ' {{ $item->tahun_ajaran }} ','{{ $item->tahun_ajaran_id }}')">
                                             Edit
                                         </a>
                                     @else
@@ -179,11 +175,11 @@
 
         }
 
-        function setParameterEdit(id, sekolah_id, nama_sekolah, kelas, tahun_ajaran) {
-            console.log(id, sekolah_id, nama_sekolah, kelas);
+        function setParameterEdit(id, sekolah_id, nama_sekolah, kelas, tahun_ajaran, tahun_ajaran_id) {
+            console.log(tahun_ajaran_id);
 
             document.getElementById('id').value = id;
-            document.getElementById('tahun_existing').value = tahun_ajaran;
+            document.getElementById('tahun_existing').value = tahun_ajaran_id;
             document.getElementById('tahun_existing').text = tahun_ajaran;
             document.getElementById('kelas').value = kelas;
             document.getElementById('kelas').text = kelas;
