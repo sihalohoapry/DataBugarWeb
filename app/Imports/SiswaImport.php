@@ -19,6 +19,8 @@ class SiswaImport implements ToModel, WithHeadingRow
      */
 
     private $data;
+    private $berhasil = 0;
+    private $gagal = 0;
 
     public function __construct(string $data = null)
     {
@@ -29,13 +31,12 @@ class SiswaImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
 
-        $countData = 0;
         if (!array_filter($row)) {
             return null;
         }
 
-        if (User::where('nisn', '=', $row['nisn'])->count() == 0) {
-            $countData++;
+        if (User::where('nisn', '=', $row['nisn'])->count() == 0 && strlen($row['nisn']) >= 18 && strlen($row['nisn']) <= 20) {
+            ++$this->berhasil;
             return new User([
                 'name' => $row['nama'],
                 'nisn' => $row['nisn'],
@@ -51,6 +52,17 @@ class SiswaImport implements ToModel, WithHeadingRow
                 'nisn' => $row['nisn'],
             ]);
         } else {
+            ++$this->gagal;
         }
+    }
+
+    public function getTotalBerhasil(): int
+    {
+        return $this->berhasil;
+    }
+
+    public function getTotalGagal(): int
+    {
+        return $this->gagal;
     }
 }

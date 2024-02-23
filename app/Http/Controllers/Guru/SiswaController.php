@@ -96,8 +96,13 @@ class SiswaController extends Controller
     public function uploadSiswa(Request $request)
     {
         try {
-            Excel::import(new SiswaImport($request->kelas), $request->file_upload);
-            return redirect()->route('siswa')->with('status', 'Berhasil menambah data');
+            $import = new SiswaImport($request->kelas);
+            Excel::import($import, $request->file_upload);
+            // dd($import->getTotalBerhasil() . ' yang gagal = ' . $import->getTotalGagal());
+            if ($import->getTotalBerhasil() == 0) {
+                return redirect()->route('siswa')->with('fail', 'Gagal menambah data. Pastikan format excel sesuai dan pastikan NISN 18-20 karakter dan berbeda setiap siswa. ');
+            }
+            return redirect()->route('siswa')->with('status', 'Berhasil menambah data ' . $import->getTotalBerhasil() . ' data dan gagal ' . $import->getTotalGagal() . ' data');
         } catch (\Maatwebsite\Excel\Validators\ValidationException $th) {
             return redirect()->route('tambah-siswa')->with('fail', 'Gagal menambah data' . $th);
         }
