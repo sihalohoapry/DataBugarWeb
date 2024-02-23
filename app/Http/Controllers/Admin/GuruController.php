@@ -56,6 +56,10 @@ class GuruController extends Controller
     public function create(Request $request)
     {
         try {
+            $cekUPTK = User::where('nuptk', '=', $request->nuptk)->count();
+            if ($cekUPTK > 0) {
+                return redirect()->route('guru')->with('fail', 'Gagal menambah data guru. NUPTK sudah ada ');
+            }
             $data = $request->all();
             $data['user'] = $request->nuptk;
             $data['password'] = Hash::make(date('dmY', strtotime($request->date_of_birth)));

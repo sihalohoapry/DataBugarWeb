@@ -43,7 +43,7 @@
                                             <div class="form-group col-md-6">
                                                 <label class="text-muted">NISN</label>
                                                 <input type="text" id="nisn" name="nisn" class="form-control"
-                                                    required>
+                                                    minlength="18" maxlength="20" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="text-muted">Kelas</label>

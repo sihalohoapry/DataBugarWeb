@@ -1,111 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Data Bugar</title>
-        <meta name="description" content="Responsive, Bootstrap, BS4" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <!-- style -->
-        <!-- build:css ../assets/css/site.min.css -->
-        <link rel="stylesheet" href="/basik/assets/css/bootstrap.css" type="text/css" />
-        <link rel="stylesheet" href="/basik/assets/css/theme.css" type="text/css" />
-        <link rel="stylesheet" href="/basik/assets/css/style.css" type="text/css" />
-        <link rel="icon" href="{{ asset('logo.png') }}">
 
-        <!-- endbuild -->
-    </head>
-    <body class="layout-row">
-        <div class="d-flex flex-column flex">
-            <div class="row no-gutters h-100">
-                <div class="col-md-6 bg-danger" style="background-image: url('basik/assets/img/login.jpg') ; " >
-                    <div class="p-3 p-md-5 d-flex flex-column h-100">
-                        <h4 class="mb-3 text-white">DATA BUGAR</h4>
-                        <div class="text-fade">Website Pencatatan Data Kebugaran Siswa.</div>
-                        <div class="d-flex flex align-items-center justify-content-center">
-                            {{-- <img src="{{ asset('basik/assets/img/login.jpg') }}" alt=""> --}}
-                        </div>
-                    </div>
+<head>
+    <meta charset="utf-8" />
+    <title>Data Bugar</title>
+    <meta name="description" content="Responsive, Bootstrap, BS4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- style -->
+    <!-- build:css ../assets/css/site.min.css -->
+    <link rel="stylesheet" href="/basik/assets/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/basik/assets/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="/basik/assets/css/style.css" type="text/css" />
+    <link rel="icon" href="{{ asset('logo-databugar.png') }}">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/basik/style-login.css">
+
+</head>
+
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
                 </div>
-                <div class="col-md-6" id="content-body">
-                    <div class="p-3 p-md-5">
-                        <h5>Selamat Datang</h5>
-                        <p>
-                            <small class="text-muted">Silahkan masuk untuk melanjutkan aktifitasmu</small>
-                        </p>
-                        
-                        <form method="POST" action="{{ route('login') }}">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class=" d-flex align-items-center justify-content-center">
+                            <img src="{{ asset('logo-databugar.png') }}" alt="">
+                        </div>
+                        <h3 class="text-center mb-4"><span style="color: black">Data Bugar</span><span
+                                style="color: red"><sup>+</sup></span></h3>
+                        <form class="login-form"method="POST" action="{{ route('login') }}">
                             @csrf
-
                             <div class="form-group">
-                                <label>User</label>
-                                <input id="user" type="text" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="user" autofocus>
-    
-                                    @error('user')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                            </div>
-    
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-    
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                            </div>
+                                <input id="user" type="text"
+                                    class="form-control @error('user') is-invalid @enderror" name="user"
+                                    value="{{ old('user') }}" required autocomplete="user" placeholder="User"
+                                    autofocus>
 
-                            <div class="checkbox mb-3">
-                                <label class="ui-check" for="remember">
-                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <i></i> Ingatkan saya
-                                </label>
+                                @error('user')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
-    
-                            {{-- <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-    
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
+                            <div class="form-group d-flex">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    placeholder="Password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-50">
+                                    <label class="ui-check" for="remember">
+                                        <input type="checkbox" name="remember" id="remember"
+                                            {{ old('remember') ? 'checked' : '' }}>
+                                        <i></i> Ingatkan saya
+                                    </label>
                                 </div>
-                            </div> --}}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success rounded submit p-3 px-5">Masuk</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- build:js ../assets/js/site.min.js -->
-        <!-- jQuery -->
-        <script src="/basik/libs/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="/basik/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="/basik/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- ajax page -->
-        <script src="/basik/libs/pjax/pjax.min.js"></script>
-        <script src="/basik/assets/js/ajax.js"></script>
-        <!-- lazyload plugin -->
-        <script src="/basik/assets/js/lazyload.config.js"></script>
-        <script src="/basik/assets/js/lazyload.js"></script>
-        <script src="/basik/assets/js/plugin.js"></script>
-        <!-- scrollreveal -->
-        <script src="/basik/libs/scrollreveal/dist/scrollreveal.min.js"></script>
-        <!-- feathericon -->
-        <script src="/basik/libs/feather-icons/dist/feather.min.js"></script>
-        <script src="/basik/assets/js/plugins/feathericon.js"></script>
-        <!-- theme -->
-        <script src="/basik/assets/js/theme.js"></script>
-        <script src="/basik/assets/js/utils.js"></script>
-        <!-- endbuild -->
-    </body>
+    </section>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

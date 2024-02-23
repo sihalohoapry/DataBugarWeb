@@ -175,9 +175,10 @@
                             @endif
 
                             <li>
-                                <a href="" data-toggle="modal" data-target="#ModalLogout">
+                                <a class="btn btn-warning" href="" data-toggle="modal"
+                                    data-target="#ModalLogout">
                                     <span class="nav-icon text-success"><i data-feather='arrow-up-right'></i></span>
-                                    <span class="nav-text">Keluar</span>
+                                    <span class="nav-text text-left">Keluar</span>
                                 </a>
 
 
