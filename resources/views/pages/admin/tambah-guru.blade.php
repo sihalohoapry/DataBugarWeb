@@ -44,7 +44,7 @@
                                             <div class="form-group col-md-6">
                                                 <label class="text-muted">NUPTK</label>
                                                 <input type="text" id="nuptk" name="nuptk" class="form-control"
-                                                    minlength="16" maxlength="18" required>
+                                                    minlength="16" maxlength="16" required>
                                             </div>
 
                                             <div class="form-group col-md-6">

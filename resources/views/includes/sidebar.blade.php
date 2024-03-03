@@ -60,6 +60,14 @@
 
                                 </li>
                                 <li>
+                                    <a href="{{ route('siswa') }}" class="">
+                                        <span class="nav-icon"><i data-feather='list'></i></span>
+                                        <span
+                                            class="nav-text {{ request()->is('siswa*') ? 'text-primary' : '' }}">Siswa</span>
+                                    </a>
+
+                                </li>
+                                <li>
                                     <a href="{{ route('sekolah') }}" class="">
                                         <span class="nav-icon"><i data-feather='list'></i></span>
                                         <span

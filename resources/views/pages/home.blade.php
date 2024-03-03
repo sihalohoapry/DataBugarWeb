@@ -24,75 +24,83 @@
                         <div class="row row-sm sr">
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center text-hover-success">
-                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                <i data-feather="users"></i>
-                                            </div>
-                                            <div class="px-4 flex">
-                                                <div>User Terdaftar</div>
-                                                <div class="text-success mt-2">
-                                                    {{ $countSiswa }} siswa.
+                                    <a href="{{ route('siswa') }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                    <i data-feather="users"></i>
                                                 </div>
-                                            </div>
+                                                <div class="px-4 flex">
+                                                    <div>User Terdaftar</div>
+                                                    <div class="text-success mt-2">
+                                                        {{ $countSiswa }} siswa.
+                                                    </div>
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center text-hover-success">
-                                            <div class="avatar w-56 m-2 no-shadow gd-success">
-                                                <i data-feather="users"></i>
-                                            </div>
-                                            <div class="px-4 flex">
-                                                <div>Guru Terdaftar</div>
-                                                <div class="text-success mt-2">
-                                                    {{ $countGuru }} guru.
+                                    <a href="{{ route('guru') }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-success">
+                                                    <i data-feather="users"></i>
                                                 </div>
-                                            </div>
+                                                <div class="px-4 flex">
+                                                    <div>Guru Terdaftar</div>
+                                                    <div class="text-success mt-2">
+                                                        {{ $countGuru }} guru.
+                                                    </div>
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             {{-- categories --}}
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center text-hover-success">
-                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                <i data-feather="map"></i>
-                                            </div>
-                                            <div class="px-4 flex">
-                                                <div>Kelas</div>
-                                                <div class="text-success mt-2">
-                                                    {{ $countKelas }} kelas.
+                                    <a href="{{ route('sekolah') }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                    <i data-feather="map"></i>
                                                 </div>
-                                            </div>
+                                                <div class="px-4 flex">
+                                                    <div>Sekolah</div>
+                                                    <div class="text-success mt-2">
+                                                        {{ $countSekolah }} Sekolah.
+                                                    </div>
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex">
                                 <div class="card flex">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center text-hover-success">
-                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                <i data-feather="monitor"></i>
-                                            </div>
-                                            <div class="px-4 flex">
-                                                <div>Materi Video</div>
-                                                <div class="text-success mt-2">
-                                                    {{ $countMateri }} materi.
+                                    <a href="{{ route('materi') }}">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center text-hover-success">
+                                                <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                    <i data-feather="monitor"></i>
                                                 </div>
-                                            </div>
+                                                <div class="px-4 flex">
+                                                    <div>Materi Video</div>
+                                                    <div class="text-success mt-2">
+                                                        {{ $countMateri }} materi.
+                                                    </div>
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
 

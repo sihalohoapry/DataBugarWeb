@@ -196,54 +196,59 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="card-header">
-                                    <strong>Tambah Data</strong>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <a href="{{ route('download') }}" class="btn btn-primary ml-4">Download
-                                            Template</a>
 
+                                @if (Auth::user()->role != 'ADMIN')
+                                    <div class="card-header">
+                                        <strong>Tambah Data</strong>
                                     </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card flex">
-                                            <a href="" data-toggle="modal" data-target="#uploadFile">
-                                                <div class="card-body">
-                                                    <div class="d-flex align-items-center text-hover-success">
-                                                        <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                            <i data-feather="upload"></i>
-                                                        </div>
-                                                        <div class="px-4 flex">
-                                                            <div>Upload Data</div>
-                                                            <div class="text-success mt-2" id="total-sum">
-                                                            </div>
-                                                        </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="{{ route('download') }}" class="btn btn-primary ml-4">Download
+                                                Template</a>
 
+                                        </div>
+                                        <div class="col-md-6 d-flex">
+                                            <div class="card flex">
+                                                <a href="" data-toggle="modal" data-target="#uploadFile">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center text-hover-success">
+                                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                                <i data-feather="upload"></i>
+                                                            </div>
+                                                            <div class="px-4 flex">
+                                                                <div>Upload Data</div>
+                                                                <div class="text-success mt-2" id="total-sum">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 d-flex">
+                                            <div class="card flex">
+                                                <a href="{{ route('tambah-siswa') }}">
+                                                    <div class="card-body">
+                                                        <div class="d-flex align-items-center text-hover-success">
+                                                            <div class="avatar w-56 m-2 no-shadow gd-primary">
+                                                                <i data-feather="plus"></i>
+                                                            </div>
+                                                            <div class="px-4 flex">
+                                                                <div>Tambah Siswa</div>
+                                                                <div class="text-success mt-2" id="total-transaksi">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card flex">
-                                            <a href="{{ route('tambah-siswa') }}">
-                                                <div class="card-body">
-                                                    <div class="d-flex align-items-center text-hover-success">
-                                                        <div class="avatar w-56 m-2 no-shadow gd-primary">
-                                                            <i data-feather="plus"></i>
-                                                        </div>
-                                                        <div class="px-4 flex">
-                                                            <div>Tambah Siswa</div>
-                                                            <div class="text-success mt-2" id="total-transaksi">
-                                                            </div>
-                                                        </div>
+                                @endif
 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -254,9 +259,11 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Data Kosong</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">Silahkan tambah data</h6>
-                                    <a class="btn btn-primary text-white" href="{{ route('tambah-siswa') }}">
-                                        Tambah Data
-                                    </a>
+                                    @if (Auth::user()->role != 'ADMIN')
+                                        <a class="btn btn-primary text-white" href="{{ route('tambah-siswa') }}">
+                                            Tambah Data
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         @endif

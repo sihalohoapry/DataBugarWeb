@@ -407,7 +407,7 @@
     <div id="header" class="page-header ">
         <div class="navbar navbar-expand-lg">
             <!-- brand -->
-            <a href="index.html" class="navbar-brand d-lg-none">
+            <a href="{{ route('home') }}" class="navbar-brand d-lg-none">
 
                 <img src="{{ asset('logo-databugar.png') }}" alt="...">
             </a>

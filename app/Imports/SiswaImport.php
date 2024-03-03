@@ -35,7 +35,7 @@ class SiswaImport implements ToModel, WithHeadingRow
             return null;
         }
 
-        if (User::where('nisn', '=', $row['nisn'])->count() == 0 && strlen($row['nisn']) >= 18 && strlen($row['nisn']) <= 20) {
+        if (User::where('nisn', '=', $row['nisn'])->count() == 0 && strlen($row['nisn']) == 10) {
             ++$this->berhasil;
             return new User([
                 'name' => $row['nama'],
